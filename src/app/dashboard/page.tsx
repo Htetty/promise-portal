@@ -3,6 +3,8 @@ import { Progress } from './components/Progress';
 import Dates from './components/Dates';
 import QOL from './components/QOL';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Dashboard() {
     return (
         <div className='min-h-screen bg-background px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8'>

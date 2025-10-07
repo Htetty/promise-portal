@@ -39,4 +39,4 @@ export const staticImages = {
     src: '/images/test.jpg', 
     description: 'Personalized counseling and academic support'
   }
-}
+};

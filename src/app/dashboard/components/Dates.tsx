@@ -5,6 +5,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
+import type { PickersDayProps } from '@mui/x-date-pickers/PickersDay';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import dayjs from 'dayjs';
@@ -41,12 +42,16 @@ const theme = createTheme({
     },
 });
 
-const getEventsForDate = (date: dayjs.Dayjs, events: typeof FALL_2025_EVENTS) => {
+type EventsByDate = typeof FALL_2025_EVENTS;
+
+const getEventsForDate = (date: dayjs.Dayjs, events: EventsByDate) => {
     const dateKey = date.format('YYYY-MM-DD');
     return events[dateKey as keyof typeof events] || [];
 };
 
-const CustomDay = (props: any) => {
+type CustomDayProps = PickersDayProps & { events: EventsByDate };
+
+const CustomDay = (props: CustomDayProps) => {
     const { day, events, ...other } = props;
     const dayEvents = getEventsForDate(day, events);
     const hasEvents = dayEvents.length > 0;
