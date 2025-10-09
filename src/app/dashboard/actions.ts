@@ -23,3 +23,18 @@ export async function getUserData() {
 
   return data;
 }
+
+export async function getPEOEvents() {
+  const supabase = await createClient();
+  
+  const { data, error } = await supabase
+    .from('PEO')
+    .select('*')
+    .order('date', { ascending: true });
+
+  if (error) {
+    throw new Error('Failed to fetch PEO events');
+  }
+
+  return data;
+}

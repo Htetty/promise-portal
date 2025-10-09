@@ -1,153 +1,146 @@
 'use client';
 
 import * as React from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs, { Dayjs } from 'dayjs';
+
+import Badge from '@mui/material/Badge';
+
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { PickersDay } from '@mui/x-date-pickers/PickersDay';
-import type { PickersDayProps } from '@mui/x-date-pickers/PickersDay';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
-import dayjs from 'dayjs';
-import { FALL_2025_EVENTS } from '../data/fall-2025';
+import { LocalizationProvider, PickersDay, PickersDayProps, DateCalendar } from '@mui/x-date-pickers';
+
+import { timelineItemClasses } from '@mui/lab/TimelineItem';
+
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#FDD06E',
-            light: '#FFF4D6',
-            dark: '#E6B85A',
-        },
-        secondary: {
-            main: '#FFB84D',
-        },
-        text: {
-            primary: '#252525',
-            secondary: '#8e8e8e',
-        },
-    },
-    shape: {
-        borderRadius: 12,
-    },
-    components: {
-        MuiDateCalendar: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: '#f8f9fa',
-                    borderRadius: '16px',
-                },
-            },
-        },
-    },
-});
+import { FALL_2025_EVENTS, CalendarEvent } from '../data/fall-2025';
+import { theme } from '@/lib/muix/theme';
 
-type EventsByDate = typeof FALL_2025_EVENTS;
-
-const getEventsForDate = (date: dayjs.Dayjs, events: EventsByDate) => {
+function getEventsForDate(date: Dayjs): CalendarEvent[] {
     const dateKey = date.format('YYYY-MM-DD');
-    return events[dateKey as keyof typeof events] || [];
-};
+    return FALL_2025_EVENTS[dateKey] || [];
+}
 
-type CustomDayProps = PickersDayProps & { events: EventsByDate };
+function ServerDay(props: PickersDayProps) {
+    const { day, selected, outsideCurrentMonth, ...other } = props;
 
-const CustomDay = (props: CustomDayProps) => {
-    const { day, events, ...other } = props;
-    const dayEvents = getEventsForDate(day, events);
+    const dayEvents = getEventsForDate(day);
     const hasEvents = dayEvents.length > 0;
+    const isSelected = selected;
+
+    //if (outsideCurrentMonth) return <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />;
 
     return (
+        /*<Badge
+            key={day.toString()}
+            overlap="circular"
+            badgeContent={hasEvents ? '🌚' : undefined}
+        >
+            <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
+        </Badge>*/
         <PickersDay
             {...other}
+            outsideCurrentMonth={outsideCurrentMonth}
             day={day}
-            sx={{
-                position: 'relative',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                aspectRatio: '1 / 1',
-                borderRadius: '50%',
-                padding: 0,
-                '&.Mui-selected': {
-                    backgroundColor: '#FDD06E',
-                    color: '#252525',
-                    '&:hover': {
-                        backgroundColor: '#E6B85A',
+            sx={(theme) => ({
+                ...(hasEvents && {
+                    backgroundColor: theme.palette.primary.main,
+                    '&:hover, &:focus': {
+                        backgroundColor: theme.palette.primary.dark,
                     },
+                }),
+                ...(selected && {
+                    backgroundColor: theme.palette.secondary.main,
+                    '&:hover, &:focus': {
+                        backgroundColor: theme.palette.secondary.main,
+                    },
+                }),
+            })}
+        />
+    );
+}
+
+{/*}
+function EventsComponent({ selectedDate }: { selectedDate: Dayjs }) {
+    const events = getEventsForDate(selectedDate);
+    const hasEvents = events.length > 0;
+
+    if (!hasEvents) {
+        return <div className="text-gray-500">No events on this day</div>;
+    }
+
+    return (
+        <div className="mt-4">
+            <p>{events.map(event => event.title).join(", ")}</p>
+        </div>
+    );
+}*/}
+
+function TimelineComponent({ events }: { events: CalendarEvent[] }) {
+    if (events.length === 0) {
+        return <div className="text-gray-500">No events on this day</div>;
+    }
+
+    return (
+        <Timeline
+            sx={{
+                [`& .${timelineItemClasses.root}:before`]: {
+                    flex: 0,
+                    padding: 0,
                 },
-                '&::after': hasEvents ? {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: '3px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '6px',
-                    height: '6px',
-                    backgroundColor: '#f59e0b',
-                    borderRadius: '50%',
-                } : {}
+            }}
+        >
+            {events.map((event, index) => (
+                <TimelineItem key={event.title}>
+                    <TimelineSeparator>
+                        <TimelineDot />
+                        {index < events.length - 1 && <TimelineConnector />}
+                    </TimelineSeparator>
+                    <TimelineContent>
+                        <div className="font-medium">{event.title}</div>
+                        <div className="text-sm text-gray-600">{event.time}</div>
+                    </TimelineContent>
+                </TimelineItem>
+            ))}
+        </Timeline>
+    );
+}
+
+function CalendarComponent({ onDateChange }: { onDateChange: (date: Dayjs) => void }) {
+    return (
+        <DateCalendar
+            views={['day']}
+            slots={{
+                day: ServerDay,
+            }}
+            sx={{
+                'margin': 0,
+            }}
+            onChange={(date) => {
+                if (date) {
+                    onDateChange(date);
+                }
             }}
         />
     );
-};
+}
 
-export default function Calendar() {
-    const [selectedDate, setSelectedDate] = React.useState<dayjs.Dayjs>(dayjs());
-    const events = FALL_2025_EVENTS;
-
-    const handleDateChange = (newDate: dayjs.Dayjs | null) => {
-        if (newDate) {
-            setSelectedDate(newDate);
-        }
-    };
-
-    const selectedDateEvents = getEventsForDate(selectedDate, events);
+export default function DateCalendarServerRequest() {
+    const [selectedDate, setSelectedDate] = React.useState<Dayjs>(dayjs());
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-start">
-                    <div className="flex justify-center lg:justify-start">
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DateCalendar
-                                views={['day']}
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                slots={{
-                                    day: (props) => <CustomDay {...props} events={events} />,
-                                }}
-                                sx={{
-                                    '--MuiPickersDay-daySize': '35px',
-                                    '& .MuiPickersDay-root': {
-                                        minWidth: '35px',
-                                        height: '35px'
-                                    }
-                                }}
-                            />
-                        </LocalizationProvider>
-                    </div>
-
-                    <div className="bg-gray-50 rounded-xl p-3 sm:p-4 min-h-0">
-                        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
-                            {selectedDate ? selectedDate.format('MMMM D, YYYY') : 'Events'}
-                        </h3>
-
-                        {selectedDateEvents.length > 0 ? (
-                            <div className="space-y-2">
-                                {selectedDateEvents.map((event, index) => (
-                                    <div key={index} className="bg-white p-2 sm:p-3 rounded-lg shadow-sm">
-                                        <h4 className="text-sm sm:text-base lg:text-lg font-medium">{event.title}</h4>
-                                        <p className="text-xs sm:text-sm mt-1">{event.time}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="text-gray-500">No events scheduled for this date</p>
-                        )}
-                    </div>
+        <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
+            <div className='flex gap-4'>
+                <div className='flex justify-start items-start'>
+                    <LocalizationProvider dateAdapter={AdapterDayjs} >
+                        <CalendarComponent onDateChange={setSelectedDate} />
+                    </LocalizationProvider >
+                </div>
+                <div className='bg-gray-50 rounded-2xl p-4 flex-1'>
+                    <h3 className="font-semibold mb-2">Events:</h3>
+                    <TimelineComponent events={getEventsForDate(selectedDate)} />
                 </div>
             </div>
-        </ThemeProvider>
+        </div>
     );
 }

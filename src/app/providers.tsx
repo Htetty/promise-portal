@@ -2,37 +2,10 @@
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import type { } from '@mui/x-date-pickers/themeAugmentation';
 import { Loading } from './loader';
-
-const theme = createTheme({
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 12,
-                    textTransform: 'none',
-                    fontWeight: 600,
-                },
-            },
-        },
-        MuiDatePicker: {
-            defaultProps: {
-                displayWeekNumber: true,
-            },
-        },
-        MuiDateCalendar: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: '#f8f9fa',
-                    borderRadius: '16px',
-                },
-            },
-        },
-    },
-});
+import { theme } from '@/lib/muix/theme';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
     return (

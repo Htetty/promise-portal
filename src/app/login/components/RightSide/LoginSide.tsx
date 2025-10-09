@@ -24,7 +24,7 @@ export function Login({ errorMessage }: LoginProps) {
                             <span className="bg-[#FDD06E] text-[#252525] italic">Scholars
 
                                 <span
-                                    className="font-gravitas inline-block ml-2 align-baseline rotate-6 text-7xl sm:text-6xl lg:text-8xl"
+                                    className="font-kavoon inline-block ml-2 align-baseline rotate-6 text-7xl sm:text-6xl lg:text-8xl"
                                 >!&nbsp;
                                 </span>
                             </span>

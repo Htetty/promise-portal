@@ -44,3 +44,7 @@ body {
 .font-open-sans {
   font-family: var(--font-open-sans), serif;
 }
+
+.font-kavoon {
+  font-family: var(--font-kavoon), serif;
+}

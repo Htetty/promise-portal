@@ -10,7 +10,7 @@ interface LoginPageProps {
     searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }
 
-export default async function HomePage({ searchParams }: LoginPageProps) {
+export default async function LoginPage({ searchParams }: LoginPageProps) {
     const resolvedParams = searchParams ? await searchParams : undefined;
     const errorKey = Array.isArray(resolvedParams?.error) ? resolvedParams?.error[0] : resolvedParams?.error;
     const errorMessage = errorKey ? errorCopy[errorKey] ?? 'Unable to sign in at the moment. Please try again.' : undefined;
