@@ -12,7 +12,7 @@ import { timelineItemClasses } from '@mui/lab/TimelineItem';
 
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 
-import { PEOEvent, convertPEOToCalendarEvent } from '../data/fall-2025';
+import { PEOEvent, formatPEOEvent } from '../data/fall-2025';
 import { theme } from '@/lib/muix/theme';
 
 interface DatesProps {
@@ -30,7 +30,7 @@ function getEventsForDate(date: Dayjs, peoEvents: PEOEvent[]): PEOEvent[] {
         return a.start_time.localeCompare(b.start_time); // if both have start times, sort by start time
     });
 
-    return sortedEvents.map(convertPEOToCalendarEvent);
+    return sortedEvents.map(formatPEOEvent);
 }
 
 function ServerDay(props: PickersDayProps & { peoEvents: PEOEvent[] }) {

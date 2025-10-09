@@ -8,7 +8,7 @@ export interface PEOEvent {
   time?: string;
 }
 
-export function convertPEOToCalendarEvent(peoEvent: any): PEOEvent {
+export function formatPEOEvent(peoEvent: PEOEvent): PEOEvent {
   return {
     id: peoEvent.id,
     date: peoEvent.date,
@@ -16,11 +16,11 @@ export function convertPEOToCalendarEvent(peoEvent: any): PEOEvent {
     end_time: peoEvent.end_time,
     title: peoEvent.title,
     location: peoEvent.location,
-    time: formatTimeForDisplay(peoEvent.start_time, peoEvent.end_time)
+    time: formatTime(peoEvent.start_time, peoEvent.end_time)
   };
 }
 
-function formatTimeForDisplay(startTime?: string, endTime?: string): string {
+function formatTime(startTime?: string, endTime?: string): string {
   if (!startTime) return 'All Day';
   
   const formatTime = (time: string) => {
