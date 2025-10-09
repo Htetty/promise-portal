@@ -12,9 +12,6 @@ export function ImageGallery() {
                         alt={staticImages.promiseShirt.description}
                         className='w-full h-full object-cover'
                     />
-                    <div className='absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500'>
-                        <h3 className='text-lg font-bold'>Some Text Here</h3>
-                    </div>
                 </div>
             </div>
 
