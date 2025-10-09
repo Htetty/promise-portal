@@ -36,7 +36,7 @@ export const staticImages = {
     description: 'We\'ve got your back - Promise Scholars Program'
   },
   counseling: {
-    src: '/images/test.jpg', 
+    src: '/images/ApplyToday.jpg', 
     description: 'Personalized counseling and academic support'
   }
 };

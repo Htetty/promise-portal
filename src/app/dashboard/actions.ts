@@ -28,7 +28,7 @@ export async function getPEOEvents() {
   const supabase = await createClient();
   
   const { data, error } = await supabase
-    .from('PEO')
+    .from('PEOS')
     .select('*')
     .order('date', { ascending: true });
 

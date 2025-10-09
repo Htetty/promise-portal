@@ -12,19 +12,31 @@ import { timelineItemClasses } from '@mui/lab/TimelineItem';
 
 import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
 
-
-import { FALL_2025_EVENTS, CalendarEvent } from '../data/fall-2025';
+import { PEOEvent, convertPEOToCalendarEvent } from '../data/fall-2025';
 import { theme } from '@/lib/muix/theme';
 
-function getEventsForDate(date: Dayjs): CalendarEvent[] {
-    const dateKey = date.format('YYYY-MM-DD');
-    return FALL_2025_EVENTS[dateKey] || [];
+interface DatesProps {
+    peoEvents: PEOEvent[];
 }
 
-function ServerDay(props: PickersDayProps) {
-    const { day, selected, outsideCurrentMonth, ...other } = props;
+function getEventsForDate(date: Dayjs, peoEvents: PEOEvent[]): PEOEvent[] {
+    const dateKey = date.format('YYYY-MM-DD');
+    const dayEvents = peoEvents.filter(event => event.date === dateKey);
 
-    const dayEvents = getEventsForDate(day);
+    const sortedEvents = dayEvents.sort((a, b) => {
+        if (!a.start_time && !b.start_time) return 0; //this is for if both have no start times
+        if (!a.start_time) return 1; // if a has no start time, it should be last
+        if (!b.start_time) return -1; // if b has no start time, it should be first
+        return a.start_time.localeCompare(b.start_time); // if both have start times, sort by start time
+    });
+
+    return sortedEvents.map(convertPEOToCalendarEvent);
+}
+
+function ServerDay(props: PickersDayProps & { peoEvents: PEOEvent[] }) {
+    const { day, selected, outsideCurrentMonth, peoEvents, ...other } = props;
+
+    const dayEvents = getEventsForDate(day, peoEvents);
     const hasEvents = dayEvents.length > 0;
     const isSelected = selected;
 
@@ -76,7 +88,7 @@ function EventsComponent({ selectedDate }: { selectedDate: Dayjs }) {
     );
 }*/}
 
-function TimelineComponent({ events }: { events: CalendarEvent[] }) {
+function TimelineComponent({ events }: { events: PEOEvent[] }) {
     if (events.length === 0) {
         return <div className="text-gray-500">No events on this day</div>;
     }
@@ -91,14 +103,19 @@ function TimelineComponent({ events }: { events: CalendarEvent[] }) {
             }}
         >
             {events.map((event, index) => (
-                <TimelineItem key={event.title}>
+                <TimelineItem key={event.id || event.title}>
                     <TimelineSeparator>
                         <TimelineDot />
                         {index < events.length - 1 && <TimelineConnector />}
                     </TimelineSeparator>
                     <TimelineContent>
-                        <div className="font-medium">{event.title}</div>
-                        <div className="text-sm text-gray-600">{event.time}</div>
+                        <div className="break-words">
+                            <div className="text-sm lg:text-md font-semibold break-words">{event.title}</div>
+                            <div className="text-sm lg:text-md text-gray-600">{event.time}</div>
+                            {event.location && (
+                                <div className="text-sm lg:text-md text-gray-500 break-words">{event.location}</div>
+                            )}
+                        </div>
                     </TimelineContent>
                 </TimelineItem>
             ))}
@@ -106,12 +123,15 @@ function TimelineComponent({ events }: { events: CalendarEvent[] }) {
     );
 }
 
-function CalendarComponent({ onDateChange }: { onDateChange: (date: Dayjs) => void }) {
+function CalendarComponent({ onDateChange, peoEvents }: {
+    onDateChange: (date: Dayjs) => void;
+    peoEvents: PEOEvent[];
+}) {
     return (
         <DateCalendar
             views={['day']}
             slots={{
-                day: ServerDay,
+                day: (props) => <ServerDay {...props} peoEvents={peoEvents} />,
             }}
             sx={{
                 'margin': 0,
@@ -125,20 +145,26 @@ function CalendarComponent({ onDateChange }: { onDateChange: (date: Dayjs) => vo
     );
 }
 
-export default function DateCalendarServerRequest() {
+export default function Calendar({ peoEvents }: DatesProps) {
     const [selectedDate, setSelectedDate] = React.useState<Dayjs>(dayjs());
 
     return (
         <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
-            <div className='flex gap-4'>
-                <div className='flex justify-start items-start'>
-                    <LocalizationProvider dateAdapter={AdapterDayjs} >
-                        <CalendarComponent onDateChange={setSelectedDate} />
-                    </LocalizationProvider >
+            <div className='space-y-4'>
+                {/* calendar */}
+                <div className='flex justify-center'>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <CalendarComponent
+                            onDateChange={setSelectedDate}
+                            peoEvents={peoEvents}
+                        />
+                    </LocalizationProvider>
                 </div>
-                <div className='bg-gray-50 rounded-2xl p-4 flex-1'>
+
+                {/* events */}
+                <div className='bg-gray-50 rounded-2xl p-4'>
                     <h3 className="font-semibold mb-2">Events:</h3>
-                    <TimelineComponent events={getEventsForDate(selectedDate)} />
+                    <TimelineComponent events={getEventsForDate(selectedDate, peoEvents)} />
                 </div>
             </div>
         </div>

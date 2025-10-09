@@ -83,7 +83,7 @@ export const Carousel = ({ imageData, interval = 5000 }: CarouselProps) => {
                             <ReactTyped
                                 key={currentIndex} // restart typing per image
                                 strings={[currentImage.description]}
-                                typeSpeed={40}
+                                typeSpeed={30}
                                 showCursor={false}
                                 className="font-semibold text-xs md:text-base"
                                 onComplete={() => {

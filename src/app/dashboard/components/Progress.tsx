@@ -1,4 +1,5 @@
 import { getUserData } from '../actions';
+import { ConfettiTrigger } from '../../../shared/components/Confetti';
 
 export const Progress = async () => {
     try {
@@ -10,11 +11,12 @@ export const Progress = async () => {
 
         return (
             <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
-                <h3 className='text-lg sm:text-xl font-bold text-[#252525] mb-4 sm:mb-6'>Check Out Your Progress!</h3>
+                <h3 className='text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6'>Check Out Your Progress!</h3>
 
                 {/* progress rings */}
                 <div className='flex flex-col items-center mb-4 sm:mb-6'>
-                    <div className='relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mb-4'>
+                    <div className='relative w-50 h-50 sm:w-50 sm:h-50 lg:w-50 lg:h-50 mb-4'>
+                        {/*<ConfettiTrigger overallProgress={overallProgress} />*/}
                         <svg className='w-full h-full transform -rotate-90' viewBox='0 0 100 100'>
                             <circle
                                 cx='50'
@@ -88,33 +90,33 @@ export const Progress = async () => {
 
                 {/* legend */}
                 <div className='space-y-2 sm:space-y-3'>
-                    <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3'>
+                    <div className='flex flex-row gap-x-2'>
                         <div className='flex items-center gap-2 sm:gap-3'>
                             <div className='w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#ea580c]'></div>
-                            <span className='text-xs sm:text-sm text-[#252525]'>Counselor Appointments Attended</span>
-                        </div>
-                        <div className='text-xs sm:text-sm text-[#252525]'>
-                            {userData?.appt_count || 0} of 6
+                            <div className='text-md lg:text-lg font-semibold text-black'>
+                                {userData?.appt_count || 0} of 6
+                            </div>
+                            <span className='text-md lg:text-lg text-black'>Counselor Appointments Attended</span>
                         </div>
                     </div>
 
-                    <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3'>
+                    <div className='flex flex-row gap-x-2'>
                         <div className='flex items-center gap-2 sm:gap-3'>
                             <div className='w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#f59e0b]'></div>
-                            <span className='text-xs sm:text-sm text-[#252525]'>PEOs Attended</span>
-                        </div>
-                        <div className='text-xs sm:text-sm text-[#252525]'>
-                            {userData?.peo_count || 0} of 3
+                            <div className='text-md lg:text-lg font-semibold text-[black]'>
+                                {userData?.peo_count || 0} of 3
+                            </div>
+                            <span className='text-md lg:text-lg text-[black]'>PEOs Attended</span>
                         </div>
                     </div>
 
-                    <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3'>
+                    <div className='flex flex-row gap-x-2'>
                         <div className='flex items-center gap-2 sm:gap-3'>
                             <div className='w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#FDD06E]'></div>
-                            <span className='text-xs sm:text-sm text-[#252525]'>Overall Completion</span>
-                        </div>
-                        <div className='text-xs sm:text-sm text-[#252525]'>
-                            {overallProgress}%
+                            <div className='text-md lg:text-lg text-[black] font-semibold'>
+                                {overallProgress}%
+                            </div>
+                            <span className='text-md lg:text-lg text-[black]'>Overall Completion</span>
                         </div>
                     </div>
                 </div>
@@ -124,7 +126,6 @@ export const Progress = async () => {
         console.error(error);
         return (
             <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 text-center'>
-                <h3 className='text-lg sm:text-xl font-bold text-[#252525] mb-4'>Unable to Load Progress</h3>
                 <p className='text-sm sm:text-base text-[#8e8e8e]'>Please try refreshing the page.</p>
             </div>
         );

@@ -22,7 +22,7 @@ export function Loading() {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="flex flex-col items-center gap-4"
             >
-                <h1 className="text-lg lg:text-3xl text-[#252525]">
+                <h1 className="text-lg lg:text-3xl text-[black]">
                     we&apos;ve got
                     <span className="font-extrabold"> your</span>
                     <span className="font-extrabold"> back.</span>

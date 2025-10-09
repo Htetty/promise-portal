@@ -9,7 +9,7 @@ export function SignInButton() {
     return (
         <button
             type="submit"
-            className="group relative w-full bg-gradient-to-r from-[#FDD06E] to-[#FFB84D] text-[#252525] px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
+            className="group relative w-full bg-gradient-to-r from-[#FDD06E] to-[#FFB84D] text-[black] px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
             aria-disabled={pending}
             disabled={pending}
         >
@@ -18,7 +18,7 @@ export function SignInButton() {
             <div className="relative flex items-center justify-center space-x-2">
                 {pending ? (
                     <>
-                        <div className="w-5 h-5 border-2 border-[#252525] border-t-transparent rounded-full animate-spin"></div>
+                        <div className="w-5 h-5 border-2 border-[black] border-t-transparent rounded-full animate-spin"></div>
                         <span>Redirecting...</span>
                     </>
                 ) : (

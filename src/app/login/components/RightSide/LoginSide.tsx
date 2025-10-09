@@ -18,10 +18,10 @@ export function Login({ errorMessage }: LoginProps) {
                 </div>*/}
 
                 <div>
-                    <h1 className="text-5xl lg:text-8xl font-extrabold text-[#252525] leading-tight">
+                    <h1 className="text-5xl lg:text-8xl font-extrabold text-[black] leading-tight">
                         Welcome Back <br />
                         <span className="lg:inline-flex lg:whitespace-nowrap items-baseline">
-                            <span className="bg-[#FDD06E] text-[#252525] italic">Scholars
+                            <span className="bg-[#FDD06E] text-[black] italic">Scholars
 
                                 <span
                                     className="font-kavoon inline-block ml-2 align-baseline rotate-6 text-7xl sm:text-6xl lg:text-8xl"
