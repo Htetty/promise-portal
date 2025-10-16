@@ -18,14 +18,14 @@ export default async function Dashboard() {
                     </h1>*/}
                 </div>
 
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6'>
-                    <div className='space-y-3 sm:space-y-6'>
+                <div className='grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6'>
+                    <div className='lg:col-span-2 space-y-3 sm:space-y-6'>
                         <StudentInfo />
-                        <Calendar peoEvents={peoEvents} />
-                    </div>
-                    <div className='space-y-4 sm:space-y-6'>
                         <Progress />
                         <QOL />
+                    </div>
+                    <div className='lg:col-span-3 space-y-4 sm:space-y-6'>
+                        <Calendar peoEvents={peoEvents} />
                     </div>
                 </div>
             </div>

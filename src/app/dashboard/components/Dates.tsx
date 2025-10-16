@@ -150,9 +150,9 @@ export default function Calendar({ peoEvents }: DatesProps) {
 
     return (
         <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
-            <div className='space-y-4'>
+            <div className='flex flex-col lg:flex-row gap-4 lg:gap-6'>
                 {/* calendar */}
-                <div className='flex justify-center'>
+                <div className='flex-1 flex justify-center'>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <CalendarComponent
                             onDateChange={setSelectedDate}
@@ -162,7 +162,7 @@ export default function Calendar({ peoEvents }: DatesProps) {
                 </div>
 
                 {/* events */}
-                <div className='bg-gray-50 rounded-2xl p-4'>
+                <div className='flex-1 bg-gray-50 rounded-2xl p-4'>
                     <h3 className="font-semibold mb-2">Events:</h3>
                     <TimelineComponent events={getEventsForDate(selectedDate, peoEvents)} />
                 </div>
