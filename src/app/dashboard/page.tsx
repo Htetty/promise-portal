@@ -4,6 +4,7 @@ import Calendar from './components/Dates';
 import QOL from './components/QOL';
 import { getPEOEvents } from './actions';
 import Media from './components/Media';
+import Announcements from './components/Announcement';
 import { MdOutlineStar } from "react-icons/md";
 
 export const dynamic = 'force-dynamic';
@@ -27,16 +28,11 @@ export default async function Dashboard() {
                     <div className='lg:col-span-2 space-y-3 sm:space-y-6'>
                         <StudentInfo />
                         <Progress />
-                        <div className='hidden lg:block'>
-                            <QOL />
-                        </div>
+                        <Announcements />
                     </div>
                     <div className='lg:col-span-3 space-y-4 sm:space-y-6'>
                         <Calendar peoEvents={peoEvents} />
                         <Media />
-                        <div className='lg:hidden'>
-                            <QOL />
-                        </div>
                     </div>
                 </div>
             </div>
