@@ -150,6 +150,7 @@ export default function Calendar({ peoEvents }: DatesProps) {
 
     return (
         <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
+            <h3 className='text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6'>Upcoming PEOs & Important Dates</h3>
             <div className='flex flex-col lg:flex-row gap-4 lg:gap-6'>
                 {/* calendar */}
                 <div className='flex-1 flex justify-center'>

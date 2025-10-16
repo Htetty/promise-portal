@@ -4,7 +4,7 @@ import Calendar from './components/Dates';
 import QOL from './components/QOL';
 import { getPEOEvents } from './actions';
 import Media from './components/Media';
-import { PiStarFill } from "react-icons/pi";
+import { MdOutlineStar } from "react-icons/md";
 
 export const dynamic = 'force-dynamic';
 
@@ -16,10 +16,10 @@ export default async function Dashboard() {
             <div className='max-w-7xl mx-auto'>
                 <div className='mb-4'>
                     <div className='flex items-center gap-3 mb-2'>
-                        <PiStarFill className='text-[#FFB347] text-2xl sm:text-3xl lg:text-4xl' />
-                        <h1 className='text-2xl sm:text-3xl lg:text-4xl font-black text-[#FDD06E] tracking-wider uppercase'>
+                        <h1 className='text-2xl sm:text-3xl lg:text-4xl font-black text-[black] tracking-wider'>
                             Promise Dashboard
                         </h1>
+                        <MdOutlineStar className='text-[#FFB347] h-10 w-10 animate-[spin_3s_linear_infinite]' />
                     </div>
                 </div>
 
