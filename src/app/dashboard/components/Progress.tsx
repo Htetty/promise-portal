@@ -5,7 +5,7 @@ export const Progress = async () => {
     try {
         const userData = await getUserData();
 
-        const counselorProgress = Math.min(((userData?.appt_count || 0) / 6) * 100, 100);
+        const counselorProgress = Math.min(((userData?.appt_count || 0) / 4) * 100, 100);
         const peoProgress = Math.min(((userData?.peo_count || 0) / 3) * 100, 100);
         const overallProgress = Math.round((counselorProgress + peoProgress) / 2);
 

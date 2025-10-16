@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { LuCalendar, LuCircleHelp } from 'react-icons/lu';
+import { LuCalendar, LuCircleHelp, LuBook } from 'react-icons/lu';
 
 export default function QOL() {
     const quickLinks = [
@@ -13,6 +13,12 @@ export default function QOL() {
             href: 'https://skylinecollege.edu/promise/faq.php',
             icon: <LuCircleHelp className='w-4 h-4 sm:w-5 sm:h-5 text-white' />,
             label: 'FAQ',
+            backgroundClass: 'bg-[#ea580c]',
+        },
+        {
+            href: 'https://skylinecollege.edu/campus-resources',
+            icon: <LuBook className='w-4 h-4 sm:w-5 sm:h-5 text-white' />,
+            label: 'Campus Resources',
             backgroundClass: 'bg-[#ea580c]',
         },
     ];

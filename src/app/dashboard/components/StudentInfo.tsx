@@ -13,11 +13,15 @@
 import { getUserData } from '../actions';
 import { SupportViewer } from '../../../shared/components/SupportViewer';
 
+function stripIncentiveText(incentiveText: string): string {
+    if (!incentiveText) return 'N/A';
+
+    const match = incentiveText.match(/^I would like the (.+) Incentive$/);
+    return match ? match[1] : incentiveText;
+}
+
 
 export const StudentInfo = async () => {
-
-
-
     try {
         const userData = await getUserData();
 
@@ -42,7 +46,7 @@ export const StudentInfo = async () => {
                 {/* Counselor Information */}
                 <div className='mb-4 sm:mb-6'>
                     <p className='text-sm lg:text-md text-[#8e8e8e] mb-2'>Assigned Counselor:</p>
-                    <p className='text-lg lg:text-xl font-bold text-[black]'>
+                    <p className='text-lg font-bold text-[black]'>
                         {userData?.counselor || 'N/A'}
                     </p>
                 </div>
@@ -51,17 +55,17 @@ export const StudentInfo = async () => {
                 <div className='flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-3 sm:gap-4 gap-y-5'>
                     {/* Support Level */}
                     <div className='flex gap-x-2'>
-                        <span className='bg-[#FDD06E] text-[black] px-2 sm:px-3 py-1 rounded-full text-sm lg:text-md font-semibold'>
+                        <span className='bg-[#FDD06E] text-[black] px-2 sm:px-3 py-1 rounded-full text-lg font-semibold'>
                             {userData?.support_level || 'N/A'} Support
                         </span>
                         <SupportViewer supportLevel={userData?.support_level} />
                     </div>
 
                     {/* Incentive Choice */}
-                    <div className='flex gap-x-2'>
-                        <span className='text-xs sm:text-xs md:text-md lg:text-md text-[black]'>Incentive Choice:</span>
-                        <span className='bg-gray-200 text-[black] px-2 sm:px-3 lg:px-4 py-1 rounded-full text-xs md:text-md sm:text-xs lg:text-md font-semibold'>
-                            {userData?.incentive_choice || 'N/A'}
+                    <div className='flex flex-row sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 gap-y-5'>
+                        <span className='text-lg text-[black]'>Incentive Choice:</span>
+                        <span className='bg-gray-200 text-[black] px-2 sm:px-3 lg:px-4 py-1 rounded-full text-lg font-semibold'>
+                            {stripIncentiveText(userData?.incentive_choice || 'N/A')}
                         </span>
                     </div>
                 </div>

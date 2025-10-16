@@ -38,6 +38,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
+  /*
   // user is signed in and trying to access login --> redirect to dashboard
   if (user && request.nextUrl.pathname === '/login') {
     return NextResponse.redirect(new URL('/dashboard', request.url));
@@ -46,7 +47,7 @@ export async function middleware(request: NextRequest) {
   // user is signed in and trying to access root --> redirect to dashboard
   if (user && request.nextUrl.pathname === '/') {
     return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
+  } */
 
   return response;
 }
