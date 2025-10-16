@@ -1,14 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-
-type Announcement = {
-    title: string;
-    url: string;
-    posted_at: string;
-    user_can_see_posts: boolean;
-    author_image_url: string | null;
-};
+import type { Announcement } from '@/lib/Canvas/server';
 
 export default function Announcements() {
     const [announcements, setAnnouncements] = useState<Announcement[]>([]);

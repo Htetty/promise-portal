@@ -11,8 +11,8 @@ export async function GET(req: Request) {
 
     const announcements = await getAnnouncements(courseId);
     return NextResponse.json(announcements);
-  } catch (error: any) {
-    console.error('Error fetching announcements:', error?.message || error);
+  } catch (error: unknown) {
+    console.error('Error fetching announcements:', error instanceof Error ? error.message : String(error));
     return NextResponse.json(
       { error: 'Failed to fetch announcements' },
       { status: 500 }
