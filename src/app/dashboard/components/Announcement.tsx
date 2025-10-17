@@ -25,7 +25,7 @@ export default function Announcements() {
                 <h2 className='text-sm text-gray-600 mb-4 sm:mb-6'>Click to read more!</h2>
             </div>
             <div className='grid grid-cols-1 gap-3 sm:gap-4'>
-                {announcements.map((announcement, index) => (
+                {announcements.slice(0, 3).map((announcement, index) => (
                     <div key={index} className="border-b border-gray-200 pb-5">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
