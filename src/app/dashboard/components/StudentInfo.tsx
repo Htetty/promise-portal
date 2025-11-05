@@ -20,7 +20,6 @@ function stripIncentiveText(incentiveText: string): string {
     return match ? match[1] : incentiveText;
 }
 
-
 export const StudentInfo = async () => {
     try {
         const userData = await getUserData();
@@ -28,8 +27,6 @@ export const StudentInfo = async () => {
         return (
             <div className='bg-[#F5F3EB] rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
                 <div className='flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6'>
-
-                    <div className='w-12 h-12 sm:w-16 sm:h-16 bg-[#FDD06E] rounded-xl flex-shrink-0'></div>
 
                     {/* Student Info */}
                     <div className='flex-1 min-w-0'>
