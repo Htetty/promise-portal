@@ -3,16 +3,15 @@ import Link from 'next/link';
 export default function NotFound() {
     return (
         <div className="min-h-[60vh] w-full flex flex-col items-center justify-center text-center px-6">
-            <p className="text-sm uppercase tracking-widest text-gray-500">Error 404</p>
-            <h1 className="mt-2 text-4xl lg:text-6xl font-extrabold text-[black]">Page not found</h1>
-            <p className="mt-4 max-w-xl text-gray-600">
-                The page you’re looking for doesn’t exist or may have been moved.
+            <img src="/404.png" alt="404" className="max-w-full max-h-[70vh] object-contain mx-auto" />
+            <p className="mt-4 max-w-xl font-bold text-[black]">
+                Interesting... why are you here?
             </p>
 
             <div className="mt-8 flex items-center gap-3">
                 <Link
                     href="/login"
-                    className="border border-[black] text-[black] px-6 py-3 rounded-lg font-medium hover:bg-[black]/5 transition"
+                    className="px-6 py-3 rounded-lg font-medium border border-black bg-black text-white hover:bg-neutral-800 hover:shadow-lg hover:-translate-y-0.5 transition-all"
                 >
                     Back to Login
                 </Link>

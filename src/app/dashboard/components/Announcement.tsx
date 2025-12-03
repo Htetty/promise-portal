@@ -32,16 +32,15 @@ export default function Announcements() {
                                 <span className="text-gray-600 font-semibold text-sm">
                                     {announcement.author_image_url ?
                                         <img src={announcement.author_image_url} className='w-10 h-10 rounded-full' /> :
-                                        'P'
+                                        'P' // placeholder for no image
                                     }
                                 </span>
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 text-black text-lg font-semibold hover:underline cursor-pointer" >
                                 <a
                                     href={announcement.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-black text-lg font-semibold hover:underline"
                                 >
                                     {announcement.title}
                                 </a>

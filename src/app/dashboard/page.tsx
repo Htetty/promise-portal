@@ -16,7 +16,7 @@ export default async function Dashboard() {
             <div className='max-w-7xl mx-auto'>
                 <div className='mb-4'>
                     <div className='flex items-center gap-3 mb-2'>
-                        <h1 className='text-2xl sm:text-3xl lg:text-4xl font-black text-[black] tracking-wider'>
+                        <h1 className='text-2xl sm:text-3xl lg:text-4xl font-black text-[black]'>
                             Promise Dashboard
                         </h1>
                         <MdOutlineStar className='text-[#FFB347] h-10 w-10 animate-[spin_3s_linear_infinite]' />
