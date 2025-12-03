@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import type { Announcement } from '@/lib/Canvas/server';
+import { useEffect, useState } from "react";
+import type { Announcement } from "@/lib/Canvas/server";
 
 export default function Announcements() {
     const [announcements, setAnnouncements] = useState<Announcement[]>([]);
 
     useEffect(() => {
         async function fetchAnnouncements() {
-            const res = await fetch('/api/announcements');
+            const res = await fetch("/api/announcements");
             const data = await res.json();
             const visibleAnnouncements = data.filter((announcement: Announcement) =>
                 announcement.user_can_see_posts === true
@@ -32,7 +32,7 @@ export default function Announcements() {
                                 <span className="text-gray-600 font-semibold text-sm">
                                     {announcement.author_image_url ?
                                         <img src={announcement.author_image_url} className='w-10 h-10 rounded-full' /> :
-                                        'P' // placeholder for no image
+                                        "P" // placeholder for no image
                                     }
                                 </span>
                             </div>
@@ -51,7 +51,7 @@ export default function Announcements() {
                                     {new Date(announcement.posted_at).toLocaleDateString()}
                                 </p>
                                 <p className="text-sm text-gray-600">
-                                    {new Date(announcement.posted_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    {new Date(announcement.posted_at).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                                 </p>
                             </div>
                         </div>

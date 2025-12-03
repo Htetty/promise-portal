@@ -21,7 +21,7 @@ interface CanvasAnnouncement {
 export async function getAnnouncements(courseId: string | number): Promise<Announcement[]> {
     const res = await fetch(`https://smccd.instructure.com/api/v1/announcements?context_codes[]=course_${courseId}&per_page=50`, {
         headers: {
-            'Authorization': `Bearer ${TOKEN}`
+            "Authorization": `Bearer ${TOKEN}`
         }
     });
 

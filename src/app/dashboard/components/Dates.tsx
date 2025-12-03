@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import * as React from "react";
+import dayjs, { Dayjs } from "dayjs";
 
-import Badge from '@mui/material/Badge';
+import Badge from "@mui/material/Badge";
 
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider, PickersDay, PickersDayProps, DateCalendar } from '@mui/x-date-pickers';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider, PickersDay, PickersDayProps, DateCalendar } from "@mui/x-date-pickers";
 
-import { timelineItemClasses } from '@mui/lab/TimelineItem';
+import { timelineItemClasses } from "@mui/lab/TimelineItem";
 
-import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from "@mui/lab";
 
-import { PEOEvent, formatPEOEvent } from '../data/fall-2025';
-import { theme } from '@/lib/muix/theme';
+import { PEOEvent, formatPEOEvent } from "../data/fall-2025";
+import { theme } from "@/lib/muix/theme";
 
 interface DatesProps {
     peoEvents: PEOEvent[];
 }
 
 function getEventsForDate(date: Dayjs, peoEvents: PEOEvent[]): PEOEvent[] {
-    const dateKey = date.format('YYYY-MM-DD');
+    const dateKey = date.format("YYYY-MM-DD");
     const dayEvents = peoEvents.filter(event => event.date === dateKey);
 
     const sortedEvents = dayEvents.sort((a, b) => {
@@ -57,13 +57,13 @@ function ServerDay(props: PickersDayProps & { peoEvents: PEOEvent[] }) {
             sx={(theme) => ({
                 ...(hasEvents && {
                     backgroundColor: theme.palette.primary.main,
-                    '&:hover, &:focus': {
+                    "&:hover, &:focus": {
                         backgroundColor: theme.palette.primary.dark,
                     },
                 }),
                 ...(selected && {
                     backgroundColor: theme.palette.secondary.main,
-                    '&:hover, &:focus': {
+                    "&:hover, &:focus": {
                         backgroundColor: theme.palette.secondary.main,
                     },
                 }),
@@ -129,12 +129,12 @@ function CalendarComponent({ onDateChange, peoEvents }: {
 }) {
     return (
         <DateCalendar
-            views={['day']}
+            views={["day"]}
             slots={{
                 day: (props) => <ServerDay {...props} peoEvents={peoEvents} />,
             }}
             sx={{
-                'margin': 0,
+                "margin": 0,
             }}
             onChange={(date) => {
                 if (date) {

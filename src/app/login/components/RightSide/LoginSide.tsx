@@ -1,5 +1,5 @@
-import { signinWithGoogle } from '../../actions';
-import { SignInButton } from './SignInButton';
+import { signinWithGoogle } from "../../actions";
+import { SignInButton } from "./SignInButton";
 
 interface LoginProps {
     errorMessage?: string;

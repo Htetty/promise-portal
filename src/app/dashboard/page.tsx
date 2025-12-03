@@ -1,12 +1,12 @@
-import { StudentInfo } from './components/StudentInfo';
-import { Progress } from './components/Progress';
-import Calendar from './components/Dates';
-import { getPEOEvents } from './actions';
-import Media from './components/Media';
-import Announcements from './components/Announcement';
-import { MdOutlineStar } from 'react-icons/md';
+import { StudentInfo } from "./components/StudentInfo";
+import { Progress } from "./components/Progress";
+import Calendar from "./components/Dates";
+import { getPEOEvents } from "./actions";
+import Media from "./components/Media";
+import Announcements from "./components/Announcement";
+import { MdOutlineStar } from "react-icons/md";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function Dashboard() {
     const peoEvents = await getPEOEvents();

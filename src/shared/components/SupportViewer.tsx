@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { supportImages } from '../../app/dashboard/data/Support';
+import { useState, useEffect } from "react";
+import { supportImages } from "../../app/dashboard/data/Support";
 
 interface SupportViewerProps {
     supportLevel: string | undefined;
@@ -11,7 +11,7 @@ export const SupportViewer = ({ supportLevel }: SupportViewerProps) => {
     const [showSupportInfo, setShowSupportInfo] = useState(false);
     const [imageError, setImageError] = useState(false);
 
-    const supportIndex = ['High', 'Medium', 'Low'].indexOf(supportLevel || '');
+    const supportIndex = ["High", "Medium", "Low"].indexOf(supportLevel || "");
     const supportImage =
         supportIndex >= 0 && supportIndex < supportImages.length
             ? supportImages[supportIndex]
@@ -19,12 +19,12 @@ export const SupportViewer = ({ supportLevel }: SupportViewerProps) => {
 
     useEffect(() => {
         if (showSupportInfo) {
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = "unset";
         }
         return () => {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = "unset";
         };
     }, [showSupportInfo]);
 
@@ -43,7 +43,7 @@ export const SupportViewer = ({ supportLevel }: SupportViewerProps) => {
                         <div className='p-6 flex-shrink-0'>
                             <div className='flex justify-between items-center mb-4'>
                                 <h3 className='text-lg sm:text-xl lg:text-2xl font-bold text-black'>
-                                    {supportLevel ? `${supportLevel} Support Level` : 'Support Level Details'}
+                                    {supportLevel ? `${supportLevel} Support Level` : "Support Level Details"}
                                 </h3>
                                 <button
                                     onClick={() => setShowSupportInfo(false)}

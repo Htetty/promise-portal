@@ -21,12 +21,12 @@ export function formatPEOEvent(peoEvent: PEOEvent): PEOEvent {
 }
 
 function formatTime(startTime?: string, endTime?: string): string {
-  if (!startTime) return 'All Day';
+  if (!startTime) return "All Day";
   
   const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':');
+    const [hours, minutes] = time.split(":");
     const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const ampm = hour >= 12 ? "PM" : "AM";
     const displayHour = hour % 12 || 12;
     return `${displayHour}:${minutes} ${ampm}`;
   };

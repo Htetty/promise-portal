@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { InstagramEmbed } from 'react-social-media-embed';
+import { InstagramEmbed } from "react-social-media-embed";
 
 export default function Media() {
     return (

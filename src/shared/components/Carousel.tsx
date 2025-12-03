@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { ReactTyped } from 'react-typed';
+import React, { useEffect, useState } from "react";
+import { ReactTyped } from "react-typed";
 
 export interface ImageItem {
     src: string;
@@ -67,7 +67,7 @@ export const Carousel = ({ imageData, interval = 5000 }: CarouselProps) => {
                     key={`${item.src}-${index}`}
                     src={item.src}
                     alt={item.description}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${index === currentIndex ? 'opacity-100' : 'opacity-0'
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${index === currentIndex ? "opacity-100" : "opacity-0"
                         }`}
                 />
             ))}
@@ -75,7 +75,7 @@ export const Carousel = ({ imageData, interval = 5000 }: CarouselProps) => {
             {/* caption */}
             {currentImage?.description && (
                 <div
-                    className={`absolute bottom-0 left-0 right-0 flex justify-center mb-4 transition-opacity duration-300 ${isPaused ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    className={`absolute bottom-0 left-0 right-0 flex justify-center mb-4 transition-opacity duration-300 ${isPaused ? "opacity-100" : "opacity-0 pointer-events-none"
                         }`}
                 >
                     <div className="max-w-[85%] bg-black/40 rounded-lg px-4 py-2 text-white text-center">

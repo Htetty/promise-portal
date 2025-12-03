@@ -1,9 +1,9 @@
-import { ImageGallery } from './components/LeftSide/GallerySide';
-import { Login } from './components/RightSide/LoginSide';
+import { ImageGallery } from "./components/LeftSide/GallerySide";
+import { Login } from "./components/RightSide/LoginSide";
 
 const errorCopy: Record<string, string> = {
-    oauth_error: 'We could not start the Google sign-in. Please try again.',
-    unexpected_error: 'Something went wrong while signing you in. Please try again.',
+    oauth_error: "We could not start the Google sign-in. Please try again.",
+    unexpected_error: "Something went wrong while signing you in. Please try again.",
 };
 
 interface LoginPageProps {
@@ -13,7 +13,7 @@ interface LoginPageProps {
 export default async function LoginPage({ searchParams }: LoginPageProps) {
     const resolvedParams = searchParams ? await searchParams : undefined;
     const errorKey = Array.isArray(resolvedParams?.error) ? resolvedParams?.error[0] : resolvedParams?.error;
-    const errorMessage = errorKey ? errorCopy[errorKey] ?? 'Unable to sign in at the moment. Please try again.' : undefined;
+    const errorMessage = errorKey ? errorCopy[errorKey] ?? "Unable to sign in at the moment. Please try again." : undefined;
 
     return (
         <div className="min-h-screen font-sans">

@@ -1,5 +1,5 @@
-import { getUserData } from '../actions';
-import { ConfettiTrigger } from '../../../shared/components/Confetti';
+import { getUserData } from "../actions";
+import { ConfettiTrigger } from "../../../shared/components/Confetti";
 
 export const Progress = async () => {
     try {
@@ -7,11 +7,11 @@ export const Progress = async () => {
 
         const getSupportLevel = (supportLevel: string) => {
             switch (supportLevel) {
-                case 'High':
+                case "High":
                     return { counselor: 3, peo: 2 };
-                case 'Medium':
+                case "Medium":
                     return { counselor: 2, peo: 2 };
-                case 'Low':
+                case "Low":
                     return { counselor: 2, peo: 1 };
                 default:
                     return { counselor: 0, peo: 0 };

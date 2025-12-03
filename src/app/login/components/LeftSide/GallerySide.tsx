@@ -1,5 +1,5 @@
-import { Carousel } from '../../../../shared/components/Carousel';
-import { eventsImages, counselorImages, staticImages } from '../../data/images';
+import { Carousel } from "../../../../shared/components/Carousel";
+import { eventsImages, counselorImages, staticImages } from "../../data/images";
 
 export function ImageGallery() {
     return (
