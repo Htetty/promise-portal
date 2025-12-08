@@ -4,6 +4,7 @@ import { Inter, Poppins, Ubuntu, Rubik, Open_Sans, Gravitas_One, Kavoon } from "
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import Providers from "./providers";
+import { Navigation } from "@/shared/components/Navigation";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const rubik = Rubik({ weight: ["300", "500", "700"], subsets: ["latin"], variable: "--font-rubik", display: "swap" });
@@ -20,11 +21,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body
         className={`${inter.variable} ${poppins.variable} ${ubuntu.variable} ${rubik.variable} ${openSans.variable} ${gravitasOne.variable} ${kavoon.variable} antialiased min-h-screen`}
       >
         <Providers>
+          <Navigation />
           {children}
         </Providers>
         <SpeedInsights />

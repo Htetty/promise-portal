@@ -14,7 +14,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Loading />
                 {children}
-                <Loading />
             </LocalizationProvider>
         </ThemeProvider>
     );

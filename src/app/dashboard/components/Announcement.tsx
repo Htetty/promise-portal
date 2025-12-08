@@ -20,18 +20,18 @@ export default function Announcements() {
 
     return (
         <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-            <div className='flex items-center justify-between'>
-                <h3 className='text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6'>Announcements:</h3>
-                <h2 className='text-sm text-gray-600 mb-4 sm:mb-6'>Click to read more!</h2>
+            <div className="flex items-center justify-between">
+                <h3 className="text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6">Announcements:</h3>
+                <h2 className="text-sm text-gray-600 mb-4 sm:mb-6">Click to read more!</h2>
             </div>
-            <div className='grid grid-cols-1 gap-3 sm:gap-4'>
+            <div className="grid grid-cols-1 gap-3 sm:gap-4">
                 {announcements.slice(0, 3).map((announcement, index) => (
                     <div key={index} className="border-b border-gray-200 pb-5">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
                                 <span className="text-gray-600 font-semibold text-sm">
                                     {announcement.author_image_url ?
-                                        <img src={announcement.author_image_url} className='w-10 h-10 rounded-full' /> :
+                                        <img src={announcement.author_image_url} className="w-10 h-10 rounded-full" /> :
                                         "P" // placeholder for no image
                                     }
                                 </span>

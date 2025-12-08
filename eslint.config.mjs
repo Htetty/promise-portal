@@ -14,6 +14,7 @@ const eslintConfig = [
   {
     rules: {
       quotes: ["error", "double"],
+      "jsx-quotes": ["error", "prefer-double"],
       semi: ["error", "always"],
     },
   },

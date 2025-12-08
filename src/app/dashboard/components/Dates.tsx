@@ -149,11 +149,11 @@ export default function Calendar({ peoEvents }: DatesProps) {
     const [selectedDate, setSelectedDate] = React.useState<Dayjs>(dayjs());
 
     return (
-        <div className='bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8'>
-            <h3 className='text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6'>Upcoming PEOs & Important Dates</h3>
-            <div className='flex flex-col lg:flex-row gap-4 lg:gap-6'>
+        <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h3 className="text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6">Upcoming PEOs & Important Dates</h3>
+            <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
                 {/* calendar */}
-                <div className='flex-1 flex justify-center'>
+                <div className="flex-1 flex justify-center">
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <CalendarComponent
                             onDateChange={setSelectedDate}
@@ -163,7 +163,7 @@ export default function Calendar({ peoEvents }: DatesProps) {
                 </div>
 
                 {/* events */}
-                <div className='flex-1 bg-gray-50 rounded-2xl p-4'>
+                <div className="flex-1 bg-gray-50 rounded-2xl p-4">
                     <h3 className="font-semibold mb-2">Events:</h3>
                     <TimelineComponent events={getEventsForDate(selectedDate, peoEvents)} />
                 </div>
