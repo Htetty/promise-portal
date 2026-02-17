@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAnnouncements } from "@/lib/canvas/server";
+import { getAnnouncements } from "@/lib/Canvas/server";
 
 export const runtime = "nodejs"; // ensure Node runtime
 export const dynamic = "force-dynamic"; // avoid static caching in dev
