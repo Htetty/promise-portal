@@ -18,7 +18,7 @@ export function Navigation() {
     const pathname = usePathname();
     const router = useRouter();
     
-    if (pathname !== '/dashboard' && pathname !== '/faq') {
+    if (pathname !== "/dashboard" && pathname !== "/faq") {
         return null;
     }
 

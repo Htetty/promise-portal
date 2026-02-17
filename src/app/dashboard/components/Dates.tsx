@@ -167,7 +167,7 @@ export default function Calendar({ peoEvents }: DatesProps) {
                 {/* events */}
                 <div className="flex-1 bg-gray-50 rounded-2xl p-4">
                     <h3 className="font-semibold mb-2">
-                        Events on {selectedDate.format('MMMM D, YYYY')}:
+                        Events on {selectedDate.format("MMMM D, YYYY")}:
                     </h3>
                 
                     <TimelineComponent events={getEventsForDate(selectedDate, peoEvents)} />
