@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Announcement } from "@/lib/Canvas/server";
+import type { Announcement } from "@/lib/canvas/server";
 
 export default function Announcements() {
     const [announcements, setAnnouncements] = useState<Announcement[]>([]);

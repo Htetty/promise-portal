@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { getAnnouncements } from "@/lib/Canvas/server";
+import { getAnnouncements } from "@/lib/canvas/server";
 
-export const runtime = "nodejs";        // ensure Node runtime
+export const runtime = "nodejs"; // ensure Node runtime
 export const dynamic = "force-dynamic"; // avoid static caching in dev
 
 export async function GET(req: Request) {
@@ -12,7 +12,10 @@ export async function GET(req: Request) {
     const announcements = await getAnnouncements(courseId);
     return NextResponse.json(announcements);
   } catch (error: unknown) {
-    console.error("Error fetching announcements:", error instanceof Error ? error.message : String(error));
+    console.error(
+      "Error fetching announcements:",
+      error instanceof Error ? error.message : String(error)
+    );
     return NextResponse.json(
       { error: "Failed to fetch announcements" },
       { status: 500 }

@@ -32,7 +32,7 @@ export const ConfettiTrigger = ({ overallProgress }: ConfettiTriggerProps) => {
         if (overallProgress === 100) {
             setTimeout(() => {
                 triggerConfetti("progress-wheel");
-            }, 3500);
+            }, 4000);
         }
     }, [overallProgress]);
 
