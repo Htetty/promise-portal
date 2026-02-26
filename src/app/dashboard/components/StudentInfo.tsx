@@ -14,11 +14,20 @@ import { getUserData } from "../actions";
 import { SupportViewer } from "../../../shared/components/SupportViewer";
 import { PeekingCharacter } from "../../../shared/components/Animations";
 
-function stripIncentiveText(incentiveText: string): string {
+function normalizeIncentive(incentiveText?: string): string {
     if (!incentiveText) return "N/A";
 
-    const match = incentiveText.match(/^I would like the (.+) Incentive$/);
-    return match ? match[1] : incentiveText;
+    const text = incentiveText.toLowerCase();
+
+    if (text.includes("transport")) {
+        return "Transportation";
+    }
+
+    if (text.includes("meal")) {
+        return "Meal";
+    }
+
+    return "N/A";
 }
 
 export const StudentInfo = async () => {
@@ -46,7 +55,15 @@ export const StudentInfo = async () => {
                 <div className="mb-4 sm:mb-6">
                     <p className="text-sm lg:text-md text-[#8e8e8e] mb-2">Assigned Counselor:</p>
                     <p className="text-lg font-bold text-[black]">
-                        {userData?.counselor || "N/A"}
+                        {userData?.counselor || "If you don't see your counselor, please contact us!"}
+                    </p>
+                </div>
+
+                {/* Future Appt */}
+                <div className="mb-4 sm:mb-6">
+                    <p className="text-sm lg:text-md text-[#8e8e8e] mb-2">Future Apppointment Scheduled:</p>
+                    <p className="text-lg font-bold text-[black]">
+                        {userData?.future_appt || "No appointment scheduled yet"}
                     </p>
                 </div>
 
@@ -61,10 +78,10 @@ export const StudentInfo = async () => {
                     </div>
 
                     {/* Incentive Choice */}
-                    <div className="flex flex-row sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 gap-y-5">
+                    <div className="flex flex-row sm:flex-row sm:flex-wrap gap-3 sm:gap-4 gap-y-5">
                         <span className="text-lg text-[black]">Incentive Choice:</span>
                         <span className="bg-gray-200 text-[black] px-2 sm:px-3 lg:px-4 py-1 rounded-full text-lg font-semibold">
-                            {stripIncentiveText(userData?.incentive_choice || "N/A")}
+                        {normalizeIncentive(userData?.incentive_choice)}
                         </span>
                     </div>
                 </div>
