@@ -2,16 +2,17 @@
 
 import { useState } from "react";
 import FilterTop from "./components/filter";
-import { CanvasLink, Inquiry, Peo, Guides } from "./components/links";
+import { CanvasLink, Counselor, Peo, Handbook, FA } from "./components/links";
 
 const cards = [
-  { component: <Peo />, badge: "PEO" },
-  { component: <Guides />, badge: "FAQ" },
+  { component: <Peo />, badge: "PSP Requirements" },
+  { component: <Handbook />, badge: "FAQ" },
   { component: <CanvasLink />, badge: "Canvas" },
-  { component: <Inquiry />, badge: "Support" },
+  { component: <Counselor />, badge: "PSP Requirements" },
+  { component: <FA />, badge: "FAQ" },
 ];
 
-const filters = ["All", "PEO", "FAQ", "Canvas", "Support"];
+const filters = ["All", "FAQ", "Canvas", "PSP Requirements"];
 
 export default function FAQ() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -30,14 +31,7 @@ export default function FAQ() {
           setActiveFilter={setActiveFilter}
         />
 
-        <div
-          className="
-          grid
-          auto-rows-fr
-          gap-6
-          [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]
-        "
-        >
+        <div className="grid grid-cols-2 gap-6">
           {filteredCards.map((card, i) => (
             <div key={i}>{card.component}</div>
           ))}

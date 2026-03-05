@@ -3,12 +3,12 @@ export const staticImages = {
     src: "/images/sliderTop/02.jpg",
   },
   canvas: {
-    src: "/images/canvas.png",
+    src: "/images/logo-canvas.png",
   },
   peo: {
-    src: "/images/peo.png",
+    src: "/images/peopicture.jpg",
   },
-  guides: {
+  handbook: {
     src: "/images/promise-shirt.jpg",
   },
 };
