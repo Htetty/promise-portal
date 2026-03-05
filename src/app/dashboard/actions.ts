@@ -4,15 +4,18 @@ import { createClient } from "@/lib/supabase/server";
 
 export async function getUserData() {
   const supabase = await createClient();
-  
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
-  
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
   if (userError || !user) {
     throw new Error("User not authenticated");
   }
 
   const { data, error } = await supabase
-    .from("FA25") 
+    .from("FA25")
     .select("*")
     .eq("smccd_email", user.email)
     .single();
@@ -26,7 +29,7 @@ export async function getUserData() {
 
 export async function getPEOEvents() {
   const supabase = await createClient();
-  
+
   const { data, error } = await supabase
     .from("PEOS")
     .select("*")

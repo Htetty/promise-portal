@@ -1,4 +1,10 @@
-export type SupportLevel = "High" | "Medium" | "Low" | "Pathways High" | "Pathways Medium" | "Pathways Low";
+export type SupportLevel =
+  | "High"
+  | "Medium"
+  | "Low"
+  | "Pathways High"
+  | "Pathways Medium"
+  | "Pathways Low";
 
 export interface SupportItem {
   src: string;

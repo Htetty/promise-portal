@@ -16,9 +16,11 @@ export async function GET(request) {
     if (!error) {
       const forwardedHost = request.headers.get("x-forwarded-host");
       const forwardedProto = request.headers.get("x-forwarded-proto");
-      const fallbackHost = request.headers.get("host") ?? new URL(request.url).host;
+      const fallbackHost =
+        request.headers.get("host") ?? new URL(request.url).host;
       const host = forwardedHost ?? fallbackHost;
-      const isLocalHost = host?.startsWith("localhost") || host?.startsWith("127.0.0.1");
+      const isLocalHost =
+        host?.startsWith("localhost") || host?.startsWith("127.0.0.1");
       const protocol = forwardedProto ?? (isLocalHost ? "http" : "https");
       const redirectUrl = new URL(next, `${protocol}://${host}`);
 

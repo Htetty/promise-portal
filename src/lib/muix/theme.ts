@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
-import type { } from "@mui/x-date-pickers/themeAugmentation";
-import type { } from "@mui/lab/themeAugmentation";
+import type {} from "@mui/x-date-pickers/themeAugmentation";
+import type {} from "@mui/lab/themeAugmentation";
 
 export const theme = createTheme({
   palette: {
@@ -11,7 +11,7 @@ export const theme = createTheme({
     },
     secondary: {
       main: "#ea580c",
-    }
+    },
   },
   components: {
     MuiDateCalendar: {
@@ -24,9 +24,7 @@ export const theme = createTheme({
     },
     MuiTimeline: {
       styleOverrides: {
-        root: {
-          
-        },
+        root: {},
       },
     },
   },

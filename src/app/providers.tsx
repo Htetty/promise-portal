@@ -8,13 +8,13 @@ import { Loading } from "./loader";
 import { theme } from "@/lib/muix/theme";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-    return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <Loading />
-                {children}
-            </LocalizationProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Loading />
+        {children}
+      </LocalizationProvider>
+    </ThemeProvider>
+  );
 }

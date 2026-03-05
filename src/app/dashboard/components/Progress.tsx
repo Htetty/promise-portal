@@ -3,156 +3,195 @@ import { ConfettiTrigger } from "../../../shared/components/Confetti";
 import { SUPPORT_DATA, type SupportLevel } from "../data/Support";
 
 export const Progress = async () => {
-    try {
-        const userData = await getUserData();
+  try {
+    const userData = await getUserData();
 
-        const supportLevel: SupportLevel | undefined = userData?.support_level;
+    const supportLevel: SupportLevel | undefined = userData?.support_level;
 
-        const isValidSupportLevel = supportLevel === "High" || supportLevel === "Medium" || supportLevel === "Low" || supportLevel === "Pathways High" || supportLevel === "Pathways Medium" || supportLevel === "Pathways Low";
-        
-        const isPeoOptional = supportLevel === "Low" || supportLevel === "Pathways Low";
+    const isValidSupportLevel =
+      supportLevel === "High" ||
+      supportLevel === "Medium" ||
+      supportLevel === "Low" ||
+      supportLevel === "Pathways High" ||
+      supportLevel === "Pathways Medium" ||
+      supportLevel === "Pathways Low";
 
-        const { counselor, peo } = isValidSupportLevel ? SUPPORT_DATA[supportLevel] : { counselor: 0, peo: 0 };
+    const isPeoOptional =
+      supportLevel === "Low" || supportLevel === "Pathways Low";
 
-        const counselorProgress = counselor > 0 ? Math.min(((userData?.appt_count ?? 0) / counselor) * 100, 100) : 0;
+    const { counselor, peo } = isValidSupportLevel
+      ? SUPPORT_DATA[supportLevel]
+      : { counselor: 0, peo: 0 };
 
-        const peoProgress = peo > 0 ? Math.min(((userData?.peo_count ?? 0) / peo) * 100, 100) : 0;
+    const counselorProgress =
+      counselor > 0
+        ? Math.min(((userData?.appt_count ?? 0) / counselor) * 100, 100)
+        : 0;
 
-        const overallProgress = Math.round( 
-            isPeoOptional ? counselorProgress : (counselorProgress + peoProgress) / 2
-        );
-        return (
-            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-                <h3 className="text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6 text-center">Check Out Your Progress!</h3>
+    const peoProgress =
+      peo > 0 ? Math.min(((userData?.peo_count ?? 0) / peo) * 100, 100) : 0;
 
-                {/* progress rings */}
-                <div className="flex flex-col items-center mb-4 sm:mb-6">
-                    <div id="progress-wheel" className="relative w-50 h-50 sm:w-50 sm:h-50 lg:w-50 lg:h-50 mb-4">
-                        {/*<ConfettiTrigger overallProgress={overallProgress} /> */}
-                        <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="45"
-                                fill="none"
-                                stroke="#e5e7eb"
-                                strokeWidth="8"
-                            />
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="45"
-                                fill="none"
-                                stroke="#ea580c"
-                                strokeWidth="8"
-                                strokeLinecap="round"
-                                strokeDasharray={`${2 * Math.PI * 45}`}
-                                strokeDashoffset={`${2 * Math.PI * 45 * (1 - counselorProgress / 100)}`}
-                            />
-                        </svg>
+    const overallProgress = Math.round(
+      isPeoOptional ? counselorProgress : (counselorProgress + peoProgress) / 2
+    );
+    return (
+      <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+        <h3 className="text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6 text-center">
+          Check Out Your Progress!
+        </h3>
 
-                        <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="35"
-                                fill="none"
-                                stroke="#e5e7eb"
-                                strokeWidth="8"
-                            />
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="35"
-                                fill="none"
-                                stroke="#f59e0b"
-                                strokeWidth="8"
-                                strokeLinecap="round"
-                                strokeDasharray={`${2 * Math.PI * 35}`}
-                                strokeDashoffset={`${2 * Math.PI * 35 * (1 - peoProgress / 100)}`}
-                            />
-                        </svg>
+        {/* progress rings */}
+        <div className="flex flex-col items-center mb-4 sm:mb-6">
+          <div
+            id="progress-wheel"
+            className="relative w-50 h-50 sm:w-50 sm:h-50 lg:w-50 lg:h-50 mb-4"
+          >
+            {/*<ConfettiTrigger overallProgress={overallProgress} /> */}
+            <svg
+              className="w-full h-full transform -rotate-90"
+              viewBox="0 0 100 100"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#e5e7eb"
+                strokeWidth="8"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#ea580c"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 45}`}
+                strokeDashoffset={`${
+                  2 * Math.PI * 45 * (1 - counselorProgress / 100)
+                }`}
+              />
+            </svg>
 
-                        <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="25"
-                                fill="none"
-                                stroke="#e5e7eb"
-                                strokeWidth="8"
-                            />
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="25"
-                                fill="none"
-                                stroke="#FDD06E"
-                                strokeWidth="8"
-                                strokeLinecap="round"
-                                strokeDasharray={`${2 * Math.PI * 25}`}
-                                strokeDashoffset={`${2 * Math.PI * 25 * (1 - overallProgress / 100)}`}
-                            />
-                        </svg>
-                    </div>
-                </div>
+            <svg
+              className="absolute inset-0 w-full h-full transform -rotate-90"
+              viewBox="0 0 100 100"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="35"
+                fill="none"
+                stroke="#e5e7eb"
+                strokeWidth="8"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="35"
+                fill="none"
+                stroke="#f59e0b"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 35}`}
+                strokeDashoffset={`${
+                  2 * Math.PI * 35 * (1 - peoProgress / 100)
+                }`}
+              />
+            </svg>
 
-                {/* legend */}
-                <div className="space-y-2 sm:space-y-3">
-                    <div className="flex flex-row gap-x-2">
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#ea580c]"></div>
-                            <div className="text-md lg:text-lg font-semibold text-black">
-                                {userData?.appt_count || 0} of {counselor}
-                            </div>
-                            <span className="text-md lg:text-lg text-black">Counselor Appointments Attended</span>
-                        </div>
-                    </div>
+            <svg
+              className="absolute inset-0 w-full h-full transform -rotate-90"
+              viewBox="0 0 100 100"
+            >
+              <circle
+                cx="50"
+                cy="50"
+                r="25"
+                fill="none"
+                stroke="#e5e7eb"
+                strokeWidth="8"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="25"
+                fill="none"
+                stroke="#FDD06E"
+                strokeWidth="8"
+                strokeLinecap="round"
+                strokeDasharray={`${2 * Math.PI * 25}`}
+                strokeDashoffset={`${
+                  2 * Math.PI * 25 * (1 - overallProgress / 100)
+                }`}
+              />
+            </svg>
+          </div>
+        </div>
 
-                    <div className="flex flex-row gap-x-2">   
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#f59e0b]"></div>
-
-                            {isPeoOptional ? (
-                            <>
-                                <div className="text-md lg:text-lg font-semibold text-black">
-                                Optional
-                                </div>
-                                <span className="text-md lg:text-lg text-black">
-                                PEO Attendance
-                                </span>
-                            </>
-                            ) : (
-                            <>
-                                <div className="text-md lg:text-lg font-semibold text-black">
-                                {userData?.peo_count ?? 0} of {peo}
-                                </div>
-                                <span className="text-md lg:text-lg text-black">
-                                PEOs Attended
-                                </span>
-                            </>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="flex flex-row gap-x-2">
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#FDD06E]"></div>
-                            <div className="text-md lg:text-lg text-[black] font-semibold">
-                                {overallProgress}%
-                            </div>
-                            <span className="text-md lg:text-lg text-[black]">Overall Completion</span>
-                        </div>
-                    </div>
-                </div>
+        {/* legend */}
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex flex-row gap-x-2">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#ea580c]"></div>
+              <div className="text-md lg:text-lg font-semibold text-black">
+                {userData?.appt_count || 0} of {counselor}
+              </div>
+              <span className="text-md lg:text-lg text-black">
+                Counselor Appointments Attended
+              </span>
             </div>
-        );
-    } catch (error) {
-        console.error(error);
-        return (
-            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 text-center">
-                <p className="text-sm sm:text-base text-[#8e8e8e]">Please try refreshing the page.</p>
+          </div>
+
+          <div className="flex flex-row gap-x-2">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#f59e0b]"></div>
+
+              {isPeoOptional ? (
+                <>
+                  <div className="text-md lg:text-lg font-semibold text-black">
+                    Optional
+                  </div>
+                  <span className="text-md lg:text-lg text-black">
+                    PEO Attendance
+                  </span>
+                </>
+              ) : (
+                <>
+                  <div className="text-md lg:text-lg font-semibold text-black">
+                    {userData?.peo_count ?? 0} of {peo}
+                  </div>
+                  <span className="text-md lg:text-lg text-black">
+                    PEOs Attended
+                  </span>
+                </>
+              )}
             </div>
-        );
-    }
+          </div>
+
+          <div className="flex flex-row gap-x-2">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#FDD06E]"></div>
+              <div className="text-md lg:text-lg text-[black] font-semibold">
+                {overallProgress}%
+              </div>
+              <span className="text-md lg:text-lg text-[black]">
+                Overall Completion
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.error(error);
+    return (
+      <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 text-center">
+        <p className="text-sm sm:text-base text-[#8e8e8e]">
+          Please try refreshing the page.
+        </p>
+      </div>
+    );
+  }
 };

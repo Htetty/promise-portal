@@ -16,13 +16,13 @@ export function formatPEOEvent(peoEvent: PEOEvent): PEOEvent {
     end_time: peoEvent.end_time,
     title: peoEvent.title,
     location: peoEvent.location,
-    time: formatTime(peoEvent.start_time, peoEvent.end_time)
+    time: formatTime(peoEvent.start_time, peoEvent.end_time),
   };
 }
 
 function formatTime(startTime?: string, endTime?: string): string {
   if (!startTime) return "All Day";
-  
+
   const formatTime = (time: string) => {
     const [hours, minutes] = time.split(":");
     const hour = parseInt(hours);
@@ -34,6 +34,6 @@ function formatTime(startTime?: string, endTime?: string): string {
   if (endTime) {
     return `${formatTime(startTime)} - ${formatTime(endTime)}`;
   }
-  
+
   return formatTime(startTime);
 }

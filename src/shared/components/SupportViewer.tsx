@@ -34,7 +34,9 @@ export const SupportViewer = ({ supportLevel }: SupportViewerProps) => {
             <div className="p-6 flex-shrink-0">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-black">
-                  {supportLevel ? `${supportLevel} Support Level` : "Support Level Details"}
+                  {supportLevel
+                    ? `${supportLevel} Support Level`
+                    : "Support Level Details"}
                 </h3>
                 <button
                   onClick={() => setShowSupportInfo(false)}
@@ -48,8 +50,14 @@ export const SupportViewer = ({ supportLevel }: SupportViewerProps) => {
             <div className="flex-1 overflow-auto p-6 pt-0">
               <div className="text-center">
                 <img
-                  src={imageError || !supportItem ? "/Support/not-found.jpg" : supportItem.src}
-                  alt={imageError || !supportItem ? "Placeholder" : supportItem.alt}
+                  src={
+                    imageError || !supportItem
+                      ? "/Support/not-found.jpg"
+                      : supportItem.src
+                  }
+                  alt={
+                    imageError || !supportItem ? "Placeholder" : supportItem.alt
+                  }
                   className="max-w-full h-auto rounded-lg shadow-md mx-auto"
                   onError={() => setImageError(true)}
                 />
