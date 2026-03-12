@@ -20,6 +20,16 @@ export default async function Dashboard() {
           </div>
         </div>
 
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <StudentInfo />
+          <Progress />
+          <div className="lg:col-span-2">
+            <Calendar peoEvents={peoEvents} />
+          </div>
+          <Announcements />
+          <Media />
+        </div> */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
           <div className="lg:col-span-2 space-y-3 sm:space-y-6">
             <StudentInfo />
@@ -31,6 +41,7 @@ export default async function Dashboard() {
             <Media />
           </div>
         </div>
+       
       </div>
     </div>
   );

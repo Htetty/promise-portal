@@ -15,7 +15,7 @@ export async function getUserData() {
   }
 
   const { data, error } = await supabase
-    .from("FA25")
+    .from("Student_Data")
     .select("*")
     .eq("smccd_email", user.email)
     .single();
