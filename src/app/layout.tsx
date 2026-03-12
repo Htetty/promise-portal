@@ -12,10 +12,10 @@ import {
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import Providers from "./providers";
-import { Navigation } from "@/shared/components/Navigation";
+import { Navigation } from "@/app/shared/components/Navigation";
 
 export const metadata: Metadata = {
-  title: "Promise Portal",
+  title: "PSP Portal",
   description:
     "The official Promise Portal for the Promise Scholars Program at Skyline College",
 };

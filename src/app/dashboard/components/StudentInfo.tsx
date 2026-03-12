@@ -11,8 +11,8 @@
 //userData.incentive_choice
 
 import { getUserData } from "../actions";
-import { SupportViewer } from "../../../shared/components/SupportViewer";
-import { PeekingCharacter } from "../../../shared/components/Animations";
+import { SupportViewer } from "../../shared/components/SupportViewer";
+import { PeekingCharacter } from "../../shared/components/Animations";
 
 function normalizeIncentive(incentiveText?: string): string {
   if (!incentiveText) return "N/A";

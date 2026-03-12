@@ -1,5 +1,5 @@
 import { getUserData } from "../actions";
-import { ConfettiTrigger } from "../../../shared/components/Confetti";
+import { ConfettiTrigger } from "../../shared/components/Confetti";
 import { SUPPORT_DATA, type SupportLevel } from "../data/Support";
 
 export const Progress = async () => {

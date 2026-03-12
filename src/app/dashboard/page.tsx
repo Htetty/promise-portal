@@ -4,6 +4,7 @@ import Calendar from "./components/Dates";
 import { getPEOEvents } from "./actions";
 import Media from "./components/Media";
 import Announcements from "./components/Announcement";
+import { Footer } from "./components/Credit"
 import { MdOutlineStar } from "react-icons/md";
 
 export const dynamic = "force-dynamic";
@@ -29,7 +30,7 @@ export default async function Dashboard() {
           <Announcements />
           <Media />
         </div> */}
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
           <div className="lg:col-span-2 space-y-3 sm:space-y-6">
             <StudentInfo />
@@ -39,9 +40,9 @@ export default async function Dashboard() {
           <div className="lg:col-span-3 space-y-4 sm:space-y-6">
             <Calendar peoEvents={peoEvents} />
             <Media />
+            <Footer />
           </div>
         </div>
-       
       </div>
     </div>
   );
