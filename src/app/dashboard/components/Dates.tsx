@@ -103,6 +103,9 @@ function EventsComponent({ selectedDate }: { selectedDate: Dayjs }) {
 }
 
 function TimelineComponent({ events }: { events: PEOEvent[] }) {
+  const isUrl = (value: string) =>
+    value.trim().startsWith("https://") || value.trim().startsWith("http://");
+
   if (events.length === 0) {
     return <div className="text-gray-500">No events on this day</div>;
   }
@@ -132,7 +135,37 @@ function TimelineComponent({ events }: { events: PEOEvent[] }) {
               </div>
               {event.location && (
                 <div className="text-sm lg:text-md text-gray-500 break-words">
-                  {event.location}
+                  <span>Location: </span>
+                  {isUrl(event.location) ? (
+                    <a
+                      href={event.location}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline text-blue-600"
+                    >
+                      {event.location}
+                    </a>
+                  ) : (
+                    <span>{event.location}</span>
+                  )}
+                </div>
+              )}
+
+              {event.rsvp != null && event.rsvp.trim() !== "" && (
+                <div className="text-sm lg:text-md text-gray-500 break-words">
+                  <span>Please RSVP: </span>
+                  {isUrl(event.rsvp) ? (
+                    <a
+                      href={event.rsvp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline text-blue-600"
+                    >
+                      {event.rsvp}
+                    </a>
+                  ) : (
+                    <span>{event.rsvp}</span>
+                  )}
                 </div>
               )}
             </div>

@@ -1,7 +1,9 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronDown } from "lucide-react";
 import { staticImages } from "../data/images";
+import { faqs } from "../data/faqs";
+import { useState } from "react";
 
 type LinkCardProps = {
   href: string;
@@ -21,7 +23,7 @@ function Card({
   imgClassName,
 }: LinkCardProps) {
   const baseCardClass =
-    "group block max-w-2xl mx-auto rounded-2xl overflow-hidden bg-white shadow-md border border-gray-200 transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:border-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD06E] focus-visible:ring-offset-2";
+    "group block w-full rounded-2xl overflow-hidden bg-white shadow-md border border-gray-200 transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:border-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD06E] focus-visible:ring-offset-2";
 
   return (
     <a
@@ -34,7 +36,6 @@ function Card({
         <span className="absolute top-3 left-3 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-semibold z-10">
           {badge}
         </span>
-
         {imgSrc ? (
           <img
             src={imgSrc}
@@ -48,10 +49,9 @@ function Card({
           </div>
         )}
       </div>
-
-      <div className="p-4 flex items-center gap-2 font-bold text-sm text-[#FDD06E] underline underline-offset-4">
+      <div className="p-4 flex items-center gap-2 font-bold text-sm">
         <span>{cta}</span>
-        <ExternalLink className="h-5 w-5 transition group-hover:translate-x-0.5" />
+        <ExternalLink color="#1E88E5" className="h-5 w-5 transition group-hover:translate-x-0.5" />
       </div>
     </a>
   );
@@ -64,7 +64,20 @@ export function CanvasLink() {
       cta="Promise Scholars Canvas"
       imgSrc={staticImages?.canvas?.src}
       imgAlt="Canvas Page"
-      badge="Canvas"
+      badge="Apps"
+      imgClassName="w-full h-full object-contain object-center"
+    />
+  );
+}
+
+export function OneLogin() {
+  return (
+    <Card
+      href="https://smccd.onelogin.com/portal"
+      cta="SMCCD OneLogin"
+      imgSrc={staticImages?.smccd?.src}
+      imgAlt="OneLogin Portal"
+      badge="Apps"
       imgClassName="w-full h-full object-contain object-center"
     />
   );
@@ -99,7 +112,7 @@ export function FA() {
     <Card
       href="https://skylinecollege.edu/financialaid/"
       cta="Financial Aid"
-      imgSrc={staticImages?.handbook?.src}
+      imgSrc={staticImages?.fa?.src}
       imgAlt="Financial Aid"
       badge="FAQ"
     />
@@ -115,5 +128,112 @@ export function Peo() {
       imgAlt="Upcoming PEO Events"
       badge="PSP Requirements"
     />
+  );
+}
+
+export function AccordionCard({ badge }: { badge: string }) {
+  const [openCategory, setOpenCategory] = useState<number | null>(null);
+  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
+
+  const getUrl = (value: string) => {
+    const match = value.match(/https?:\/\/[^\s]+/);
+    return match ? match[0] : null;
+  };
+
+  return (
+    <div className="w-full h-full rounded-2xl overflow-hidden bg-white shadow-md">
+      <div className="relative w-full h-full overflow-y-auto">
+        <span className="absolute top-3 left-3 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-semibold z-10">
+          {badge}
+        </span>
+
+        <div className="flex flex-col gap-3 px-4 pt-12 pb-4">
+          {faqs.map((section, categoryIndex) => {
+            const categoryOpen = openCategory === categoryIndex;
+
+            return (
+              <div key={categoryIndex} className="rounded-xl overflow-hidden">
+                <button
+                  onClick={() => {
+                    setOpenCategory(categoryOpen ? null : categoryIndex);
+                    setOpenQuestion(null);
+                  }}
+                  className="w-full flex justify-between items-center px-4 py-4 font-bold text-lg bg-gray-100 transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:border-gray-300"
+                >
+                  {section.category}
+
+                  <ChevronDown
+                    className={`transition-transform duration-200 h-4 w-4 ${
+                      categoryOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* QUESTIONS */}
+                {categoryOpen && (
+                  <div className="flex flex-col gap-2 p-3 bg-white">
+                    {section.questions.map((faq, questionIndex) => {
+                      const questionOpen = openQuestion === questionIndex;
+
+                      return (
+                        <div
+                          key={questionIndex}
+                          className=" rounded-lg overflow-hidden"
+                        >
+                          <button
+                            onClick={() =>
+                              setOpenQuestion(
+                                questionOpen ? null : questionIndex
+                              )
+                            }
+                            className="w-full flex justify-between items-center px-4 py-3 font-semibold text-left transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:border-gray-300"
+                          >
+                            {faq.question}
+
+                            <ChevronDown
+                              className={`transition-transform duration-200 h-4 w-4 ${
+                                questionOpen ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+
+                          {questionOpen && (
+                            <div className="px-4 py-3 text-gray-700 bg-gray-50">
+                              <span>{faq.answer}</span>
+
+                              {faq.extra?.map((line, i) => {
+                                const url = getUrl(line);
+
+                                return (
+                                  <span key={i}>
+                                    <br />
+                                    {url ? (
+                                      <a
+                                        href={url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="underline text-blue-600"
+                                      >
+                                        {line}
+                                      </a>
+                                    ) : (
+                                      line
+                                    )}
+                                  </span>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }

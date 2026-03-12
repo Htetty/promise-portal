@@ -18,7 +18,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     : resolvedParams?.error;
   const errorMessage = errorKey
     ? errorCopy[errorKey] ??
-      "Unable to sign in at the moment. Please try again."
+    "Unable to sign in at the moment. Please try again."
     : undefined;
 
   return (

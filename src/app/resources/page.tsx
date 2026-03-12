@@ -2,24 +2,36 @@
 
 import { useState } from "react";
 import FilterTop from "./components/filter";
-import { CanvasLink, Counselor, Peo, Handbook, FA } from "./components/links";
+import {
+  CanvasLink,
+  Counselor,
+  Peo,
+  Handbook,
+  FA,
+  AccordionCard,
+  OneLogin
+} from "./components/links";
 
 const cards = [
   { component: <Peo />, badge: "PSP Requirements" },
   { component: <Handbook />, badge: "FAQ" },
-  { component: <CanvasLink />, badge: "Canvas" },
+  { component: <AccordionCard badge="FAQ" />, badge: "FAQ" },
+  { component: <CanvasLink />, badge: "Apps" },
   { component: <Counselor />, badge: "PSP Requirements" },
   { component: <FA />, badge: "FAQ" },
+  { component: <OneLogin />, badge: "Apps" },
 ];
 
-const filters = ["All", "FAQ", "Canvas", "PSP Requirements"];
+const filters = ["All", "FAQ", "Apps", "PSP Requirements"];
 
 export default function FAQ() {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredCards =
     activeFilter === "All"
-      ? cards
+      ? cards.filter((card) => !(card.component.type === AccordionCard))
+      : activeFilter === "FAQ"
+      ? cards.filter((card) => card.badge === "FAQ")
       : cards.filter((card) => card.badge === activeFilter);
 
   return (
@@ -31,11 +43,25 @@ export default function FAQ() {
           setActiveFilter={setActiveFilter}
         />
 
-        <div className="grid grid-cols-2 gap-6">
-          {filteredCards.map((card, i) => (
-            <div key={i}>{card.component}</div>
-          ))}
-        </div>
+        {activeFilter === "FAQ" ? (
+          <div className="grid sm:grid-col-1 lg:grid-cols-2 gap-6 items-start">
+            <div className="flex flex-col gap-6 flex-1 [&>*]:w-full">
+              <Handbook />
+              <FA />
+            </div>
+            <div className="flex-1">
+              <AccordionCard badge="FAQ" />
+            </div>
+          </div>
+        ) : (
+          <div className="grid sm:grid-col-1 lg:grid-cols-2 gap-6 items-start">
+            {filteredCards.map((card, i) => (
+              <div key={i} className="max-w-2xl mx-auto w-full">
+                {card.component}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

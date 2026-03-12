@@ -30,7 +30,13 @@ export default function Announcements() {
       </div>
       <div className="grid grid-cols-1 gap-3 sm:gap-4">
         {announcements.slice(0, 3).map((announcement, index) => (
-          <div key={index} className="border-b border-gray-200 pb-5">
+          <a
+            key={index}
+            href={announcement.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-md px-2 border-b border-gray-200 pb-5 transition-all duration-200 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:border-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDD06E] focus-visible:ring-offset-2 cursor-pointer"
+          >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
                 <span className="text-gray-600 font-semibold text-sm">
@@ -46,14 +52,8 @@ export default function Announcements() {
                   }
                 </span>
               </div>
-              <div className="flex-1 text-black text-lg font-semibold hover:underline cursor-pointer">
-                <a
-                  href={announcement.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {announcement.title}
-                </a>
+              <div className="flex-1 text-black text-lg font-semibold">
+                {announcement.title}
               </div>
               <div className="text-right grid grid-cols-1">
                 <p className="text-sm text-black font-semibold">Posted on:</p>
@@ -68,7 +68,7 @@ export default function Announcements() {
                 </p>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>

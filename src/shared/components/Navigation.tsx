@@ -56,6 +56,7 @@ export function Navigation() {
               );
             })}
           </div>
+
           <button
             onClick={handleSignOut}
             className="flex items-center space-x-8 rounded-lg px-4 py-3 bg-[#ea580c] text-sm font-bold text-white hover:opacity-90 hover:cursor-pointer lg:absolute lg:right-0"

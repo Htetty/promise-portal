@@ -4,6 +4,7 @@ export interface PEOEvent {
   start_time?: string;
   end_time?: string;
   title: string;
+  rsvp?: string | null;
   location?: string;
   time?: string;
 }
@@ -16,6 +17,7 @@ export function formatPEOEvent(peoEvent: PEOEvent): PEOEvent {
     end_time: peoEvent.end_time,
     title: peoEvent.title,
     location: peoEvent.location,
+    rsvp: peoEvent.rsvp,
     time: formatTime(peoEvent.start_time, peoEvent.end_time),
   };
 }

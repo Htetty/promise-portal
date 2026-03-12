@@ -11,4 +11,10 @@ export const staticImages = {
   handbook: {
     src: "/images/promise-shirt.jpg",
   },
+  fa: {
+    src: "/images/FApicture.jpg",
+  },
+  smccd: {
+    src: "/images/SMCCDLogo2.jpg"
+  }
 };

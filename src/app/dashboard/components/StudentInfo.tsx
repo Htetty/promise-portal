@@ -31,7 +31,7 @@ function normalizeIncentive(incentiveText?: string): string {
 }
 
 function cutApptTime(future_appt?: string): string {
-  if (!future_appt) return "No appointment scheduled yet";
+  if (!future_appt) return "No appointment(s) scheduled yet";
 
   const date = new Date(future_appt);
 
@@ -60,7 +60,7 @@ export const StudentInfo = async () => {
         {/* character image */}
         <PeekingCharacter />
 
-        <div className="mb-4 sm:mb-6">
+        <div className="mb-2 sm:mb-3">
           {/* Student Info */}
           <div>
             <p className="text-xl font-bold mb-1 uppercase tracking-wide">
@@ -75,7 +75,7 @@ export const StudentInfo = async () => {
           </div>
         </div>
         {/* Counselor Information */}
-        <div className="mb-4 sm:mb-6">
+        <div className="mb-2 sm:mb-3">
           <p className="text-sm lg:text-md text-[#8e8e8e] mb-2">
             Assigned Counselor:
           </p>
@@ -86,15 +86,12 @@ export const StudentInfo = async () => {
         </div>
 
         {/* Future Appt */}
-        <div className="mb-4 sm:mb-6">
+        <div className="mb-2 sm:mb-3">
           <p className="text-sm lg:text-md text-[#8e8e8e] mb-2">
-            Future Apppointment Scheduled:
+            Upcoming appointment(s):
           </p>
           <p className="text-lg font-bold text-[black]">
             {cutApptTime(userData?.future_appt)}
-          </p>
-          <p className="text-xs lg:text-sm text-[#8e8e8e] mb-2">
-            *Data might not be up to date yet*
           </p>
         </div>
 
@@ -115,6 +112,10 @@ export const StudentInfo = async () => {
               {normalizeIncentive(userData?.incentive_choice)}
             </span>
           </div>
+
+          <p className="text-xs lg:text-sm text-[#8e8e8e]">
+            *Data updates at the start of each week*
+          </p>
         </div>
       </div>
     );

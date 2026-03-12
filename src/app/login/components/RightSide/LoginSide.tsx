@@ -17,7 +17,7 @@ export function Login({ errorMessage }: LoginProps) {
                     />
                 </div>*/}
 
-        <div>
+        <div >
           <h1 className="text-5xl lg:text-8xl font-extrabold text-[black] leading-tight">
             Welcome Back <br />
             <span className="lg:inline-flex lg:whitespace-nowrap items-baseline">
@@ -30,6 +30,7 @@ export function Login({ errorMessage }: LoginProps) {
             </span>
           </h1>
         </div>
+
 
         <div>
           <form action={signinWithGoogle}>

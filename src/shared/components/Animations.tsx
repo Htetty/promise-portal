@@ -8,9 +8,9 @@ export const PeekingCharacter = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="absolute top-4 right-0 sm:top-6 lg:top-8 w-35 h-35 sm:w-50 sm:h-50 lg:w-45 lg:h-45 overflow-hidden z-10">
+    <div className="absolute top-4 right-0 sm:top-6 lg:top-8 w-55 h-55 sm:w-70 sm:h-70 lg:w-60 lg:h-60 overflow-hidden z-10">
       <motion.img
-        src="/dashboard/1.png"
+        src="/dashboard/sideCharacter.png"
         className="w-full h-full object-contain object-right"
         alt="Character"
         initial={{ x: "100%" }}
@@ -20,8 +20,8 @@ export const PeekingCharacter = () => {
               ? { x: "0%" } // Hovered: slide out fully
               : { x: "15%" } // Not hovered: stay at 15% (peeking)
             : {
-                x: ["100%", "0%", "0%", "15%"],
-              }
+              x: ["100%", "0%", "0%", "15%"],
+            }
         }
         transition={{
           delay: animationComplete ? 0 : 3.3, // wai for splash screen
