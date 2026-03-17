@@ -78,14 +78,14 @@ export function Navigation() {
             !announceDismissed
               ? { opacity: 1, translateY: "0%" }
               : {
-                opacity: 0,
-                translateY: "-100%",
-                position: "absolute",
-              }
+                  opacity: 0,
+                  translateY: "-100%",
+                  position: "absolute",
+                }
           }
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <p className="w-[70%] mx-auto font-semibold text-[10px] sm:text-sm md:text-md lg:text-base text-center group-hover/announcement_bar:animate-pulse">
+          <p className="w-[70%] mx-auto font-semibold text-xs sm:text-sm text-center group-hover/announcement_bar:animate-pulse">
             {ANNOUNCEMENT_LINK ? (
               <Link
                 href={ANNOUNCEMENT_LINK}
@@ -94,7 +94,10 @@ export function Navigation() {
                 className="inline-flex items-center justify-center gap-1 text-neutral-800 hover:text-neutral-950"
               >
                 <span>{ANNOUNCEMENT_TEXT}</span>
-                <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" strokeWidth={2.2} />
+                <ExternalLink
+                  className="h-3 w-3 sm:h-4 sm:w-4"
+                  strokeWidth={2.2}
+                />
               </Link>
             ) : (
               <span>{ANNOUNCEMENT_TEXT}</span>
@@ -108,8 +111,9 @@ export function Navigation() {
       ) : null}
 
       <div
-        className={`max-w-7xl mx-auto px-8 lg:px-0 transition-[padding-top] duration-500 ${hasAnnouncement ? "pt-0 sm:pt-0" : ""
-          }`}
+        className={`max-w-7xl mx-auto px-8 lg:px-0 transition-[padding-top] duration-500 ${
+          hasAnnouncement ? "pt-0 sm:pt-0" : ""
+        }`}
       >
         <div className="flex items-center justify-start lg:relative h-14 sm:h-16 gap-3 sm:gap-4">
           <div className="flex items-center gap-2 sm:gap-4 flex-1 lg:justify-start">
@@ -118,13 +122,13 @@ export function Navigation() {
               return (
                 <div
                   key={item.href}
-                  className={`flex items-center space-x-4 sm:space-x-8 rounded-lg px-3 py-2 sm:px-4 sm:py-3 hover:opacity-90 ${isActive ? "bg-black" : "bg-[#FDD06E]"
-                    }`}
+                  className={`flex items-center space-x-4 sm:space-x-8 rounded-lg px-3 py-2 sm:px-4 sm:py-3 hover:px-6 active:scale-90 duration-300 ${isActive ? "bg-black" : "bg-[#FDD06E]"}`}
                 >
                   <Link
                     href={item.href}
-                    className={`text-xs sm:text-sm font-bold transition-colors ${isActive ? "text-white" : "text-black"
-                      }`}
+                    className={`text-xs sm:text-sm font-bold transition-colors ${
+                      isActive ? "text-white" : "text-black"
+                    }`}
                   >
                     {item.label}
                   </Link>
@@ -135,7 +139,7 @@ export function Navigation() {
 
           <button
             onClick={handleSignOut}
-            className="flex items-center space-x-4 sm:space-x-8 rounded-lg px-3 py-2 sm:px-4 sm:py-3 bg-[#ea580c] text-xs sm:text-sm font-bold text-white hover:opacity-90 hover:cursor-pointer lg:absolute lg:right-0"
+            className="flex items-center space-x-4 sm:space-x-8 rounded-lg px-3 py-2 sm:px-4 sm:py-3 bg-[#ea580c] text-xs sm:text-sm font-bold text-white hover:px-6 active:scale-90 duration-300  lg:absolute lg:right-0"
           >
             Sign Out
           </button>

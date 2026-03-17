@@ -9,16 +9,16 @@ import {
   Handbook,
   FA,
   AccordionCard,
-  OneLogin
+  OneLogin,
 } from "./components/links";
 
 const cards = [
   { component: <Peo />, badge: "PSP Requirements" },
+  { component: <Counselor />, badge: "PSP Requirements" },
   { component: <Handbook />, badge: "FAQ" },
+  { component: <FA />, badge: "FAQ" },
   { component: <AccordionCard badge="FAQ" />, badge: "FAQ" },
   { component: <CanvasLink />, badge: "Apps" },
-  { component: <Counselor />, badge: "PSP Requirements" },
-  { component: <FA />, badge: "FAQ" },
   { component: <OneLogin />, badge: "Apps" },
 ];
 

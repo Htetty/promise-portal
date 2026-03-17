@@ -20,9 +20,9 @@ export default function FilterTop({
           <button
             key={filter}
             onClick={() => setActiveFilter(filter)}
-            className={`px-3 py-1 rounded-full text-sm font-medium transition
+            className={`px-3 py-1 rounded-full text-sm font-medium hover:px-4 active:scale-90 cursor-pointer duration-300 
               ${
-                active ? "bg-black text-white" : "bg-black/5 hover:bg-black/10"
+                active ? "bg-black text-white" : "bg-black/5"
               }`}
           >
             {filter}

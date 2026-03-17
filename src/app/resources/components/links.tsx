@@ -5,6 +5,8 @@ import { staticImages } from "../data/images";
 import { faqs } from "../data/faqs";
 import { useState } from "react";
 
+import { Accordion, AccordionItem } from "@heroui/react";
+
 type LinkCardProps = {
   href: string;
   cta: string;
@@ -51,7 +53,10 @@ function Card({
       </div>
       <div className="p-4 flex items-center gap-2 font-bold text-sm">
         <span>{cta}</span>
-        <ExternalLink color="#1E88E5" className="h-5 w-5 transition group-hover:translate-x-0.5" />
+        <ExternalLink
+          color="#1E88E5"
+          className="h-5 w-5 transition group-hover:translate-x-0.5"
+        />
       </div>
     </a>
   );
@@ -171,7 +176,10 @@ export function AccordionCard({ badge }: { badge: string }) {
 
                 {/* QUESTIONS */}
                 {categoryOpen && (
-                  <div className="flex flex-col gap-2 p-3 bg-white">
+                  <div
+                    style={{ animation: "fadeIn 0.3s ease-out forwards" }}
+                    className="flex flex-col gap-2 p-3 bg-white"
+                  >
                     {section.questions.map((faq, questionIndex) => {
                       const questionOpen = openQuestion === questionIndex;
 
@@ -198,7 +206,11 @@ export function AccordionCard({ badge }: { badge: string }) {
                           </button>
 
                           {questionOpen && (
-                            <div className="px-4 py-3 text-gray-700 bg-gray-50">
+                            <div
+                              style={{
+                                animation: "fadeIn 0.3s ease-out forwards" }}
+                              className="px-4 py-3 text-gray-700 bg-gray-50"
+                            >
                               <span>{faq.answer}</span>
 
                               {faq.extra?.map((line, i) => {

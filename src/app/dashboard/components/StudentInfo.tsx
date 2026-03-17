@@ -70,7 +70,8 @@ export const StudentInfo = async () => {
               {userData?.first_name || "Student"} {userData?.last_name || ""}
             </h2>
             <p className="text-sm text-[black]">
-              Student ID: {userData?.g_number || "N/A"}
+              <span>Student ID: </span>
+              <span className="font-bold">{userData?.g_number || "N/A"}</span>
             </p>
           </div>
         </div>
