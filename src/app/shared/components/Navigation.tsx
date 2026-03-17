@@ -21,7 +21,7 @@ import { ExternalLink } from "lucide-react";
 
 const navigationItems: NavItem[] = [
   { href: "/dashboard", label: "Home" },
-  { href: "/resources", label: "Support Resources" },
+  { href: "/resources", label: "PSP Resources" },
 ];
 
 export function Navigation() {
