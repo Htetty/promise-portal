@@ -41,11 +41,13 @@ function cutApptTime(future_appt?: string): string {
     weekday: "short",
     month: "short",
     day: "numeric",
+    timeZone: "America/Los_Angeles",
   });
 
   const formattedTime = date.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
+    timeZone: "America/Los_Angeles",
   });
 
   return `${formattedDate} @ ${formattedTime}`;
