@@ -6,7 +6,7 @@ const errorCopy: Record<string, string> = {
   unexpected_error:
     "Something went wrong while signing you in. Please try again.",
   unauthorized_domain: "Please sign in with your SMCCD Google account.",
-  not_enrolled: "You are not enrolled in PSP.",
+  not_enrolled: "Your student record with PSP cannot be found. If you believe this an error, please contact us at skylinepromise@my.smccd.edu",
 };
 
 interface LoginPageProps {

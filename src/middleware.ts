@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
     );
   }
 
-  if (user) {
+  if (user && request.nextUrl.pathname.startsWith("/dashboard")) {
     const { data: student } = await supabase
       .from("Student_Data")
       .select("smccd_email")
