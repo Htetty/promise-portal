@@ -19,7 +19,7 @@ export const faqs: FAQCategory[] = [
           "No, you cannot change your incentive since students are given the option to select their incentive at the start at the semester.",
       },
       {
-        question: "Q: When will my incentive be disbursed",
+        question: "Q: When will my incentive be disbursed?",
         answer:
           "As long as you are eligible, incentives are disbursed in the first week of each month.",
       },

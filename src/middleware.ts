@@ -41,7 +41,24 @@ export async function middleware(request: NextRequest) {
 
   if (user && !user.email?.endsWith("@my.smccd.edu")) {
     await supabase.auth.signOut();
-    return NextResponse.redirect(new URL("/login?error=unauthorized_domain", request.url));
+    return NextResponse.redirect(
+      new URL("/login?error=unauthorized_domain", request.url)
+    );
+  }
+
+  if (user) {
+    const { data: student } = await supabase
+      .from("Student_Data")
+      .select("smccd_email")
+      .eq("smccd_email", user.email)
+      .single();
+
+    if (!student) {
+      await supabase.auth.signOut();
+      return NextResponse.redirect(
+        new URL("/login?error=not_enrolled", request.url)
+      );
+    }
   }
 
   if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
