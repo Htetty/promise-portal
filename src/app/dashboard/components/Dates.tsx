@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
+import { FaTriangleExclamation } from "react-icons/fa6";
 
 import Badge from "@mui/material/Badge";
 
@@ -207,9 +208,22 @@ export default function Calendar({ peoEvents }: DatesProps) {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-      <h3 className="text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6">
+      <h3 className="text-lg sm:text-xl font-bold text-[black]">
         Upcoming PEOs & Important Dates
       </h3>
+      <h2 className="text-sm text-[#8e8e8e] mb-4 sm:mb-6">
+        <FaTriangleExclamation className="inline relative -top-[2px] text-red-500 mr-1" />
+        After attending any event/workshop, please fill out this{" "}
+        <a
+          href="https://smccd-czqfp.formstack.com/forms/psp_sp26_peo_credit"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline text-blue-600"
+        >
+          form
+        </a>{" "}
+        for PEO Credit.
+      </h2>
 
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
         {/* calendar */}

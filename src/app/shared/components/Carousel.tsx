@@ -13,7 +13,7 @@ interface CarouselProps {
   interval?: number;
 }
 
-export const Carousel = ({ imageData, interval = 5000 }: CarouselProps) => {
+export const Carousel = ({ imageData, interval = 3000 }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [shouldType, setShouldType] = useState(false);

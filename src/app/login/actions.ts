@@ -22,6 +22,9 @@ const signInWith = (provider: Provider) => async () => {
     provider: provider as "google",
     options: {
       redirectTo: authCallbackUrl,
+      queryParams: {
+        prompt: "select_account",
+      },
     },
   });
 

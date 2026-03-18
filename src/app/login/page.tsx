@@ -5,6 +5,7 @@ const errorCopy: Record<string, string> = {
   oauth_error: "We could not start the Google sign-in. Please try again.",
   unexpected_error:
     "Something went wrong while signing you in. Please try again.",
+  unauthorized_domain: "Please sign in with your SMCCD Google account.",
 };
 
 interface LoginPageProps {
@@ -18,12 +19,12 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     : resolvedParams?.error;
   const errorMessage = errorKey
     ? errorCopy[errorKey] ??
-    "Unable to sign in at the moment. Please try again."
+      "Unable to sign in at the moment. Please try again."
     : undefined;
 
   return (
     <div className="min-h-screen font-sans">
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-screen">
         <Login errorMessage={errorMessage} />
         <ImageGallery />
       </div>

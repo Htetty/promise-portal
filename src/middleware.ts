@@ -38,6 +38,12 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // user is not signed in and trying to access dashboard --> redirect to login
+
+  if (user && !user.email?.endsWith("@my.smccd.edu")) {
+    await supabase.auth.signOut();
+    return NextResponse.redirect(new URL("/login?error=unauthorized_domain", request.url));
+  }
+
   if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

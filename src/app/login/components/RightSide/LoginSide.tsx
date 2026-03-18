@@ -7,7 +7,7 @@ interface LoginProps {
 
 export function Login({ errorMessage }: LoginProps) {
   return (
-    <div className="flex items-center justify-center px-8 lg:px-16">
+    <div className="flex items-center justify-center py-10 lg:py-0 px-3 lg:px-16 ">
       <div className="w-full max-w-md space-y-8">
         {/*<div className="flex justify-center mb-6">
                     <img
@@ -17,8 +17,8 @@ export function Login({ errorMessage }: LoginProps) {
                     />
                 </div>*/}
 
-        <div >
-          <h1 className="text-5xl lg:text-8xl font-extrabold text-[black] leading-tight">
+        <div>
+          <h1 className="text-5xl lg:text-8xl font-extrabold text-[black] leading-tight text-center lg:text-left">
             Welcome Back <br />
             <span className="lg:inline-flex lg:whitespace-nowrap items-baseline">
               <span className="bg-[#FDD06E] text-[black] italic">
@@ -31,7 +31,6 @@ export function Login({ errorMessage }: LoginProps) {
           </h1>
         </div>
 
-
         <div>
           <form action={signinWithGoogle}>
             <SignInButton />
@@ -41,7 +40,7 @@ export function Login({ errorMessage }: LoginProps) {
         {errorMessage && (
           <div
             role="alert"
-            className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+            className="rounded-lg px-4 py-3 text-lg text-red-500 text-center"
           >
             {errorMessage}
           </div>

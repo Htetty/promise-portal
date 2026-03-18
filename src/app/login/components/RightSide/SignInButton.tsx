@@ -9,7 +9,7 @@ export function SignInButton() {
   return (
     <button
       type="submit"
-      className="group relative w-full bg-gradient-to-r from-[#FDD06E] to-[#FFB84D] text-[black] px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
+      className="group relative w-full bg-gradient-to-r from-[#FDD06E] to-[#FFB84D] text-[black] px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-lg transform transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none overflow-hidden cursor-pointer"
       aria-disabled={pending}
       disabled={pending}
     >
@@ -24,7 +24,8 @@ export function SignInButton() {
         ) : (
           <>
             <FcGoogle className="w-5 h-5" />
-            <span>Sign in with School Account</span>
+            {/* <img src="/images/SMCCDLogo7.png" className="w-20"/> */}
+            <span>Sign in with SMCCD Account</span>
           </>
         )}
       </div>

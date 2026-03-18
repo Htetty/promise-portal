@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SUPPORT_DATA, type SupportLevel } from "@/app/dashboard/data/Support";
+import { HiCursorClick } from "react-icons/hi";
 interface SupportViewerProps {
   supportLevel: SupportLevel | undefined;
 }
@@ -23,14 +24,10 @@ export const SupportViewer = ({ supportLevel }: SupportViewerProps) => {
     <>
       <button
         onClick={() => setShowSupportInfo(true)}
-        className="text-xs sm:text-sm lg:text-md text-black relative 
-         after:bg-[#FDD06E] after:absolute after:h-1 after:bottom-[2px] after:left-0
-         after:transition-all after:duration-300 
-         after:w-full hover:after:w-full
-         sm:after:w-0 sm:hover:after:w-full
-         cursor-pointer"
+        className="inline-flex items-center gap-1 text-xs sm:text-sm lg:text-md text-black relative after:bg-[#FDD06E] after:absolute after:h-1 after:bottom-[2px] after:left-0 after:transition-all after:duration-300 after:w-0 hover:after:w-full cursor-pointer"
       >
         What does this mean?
+        <HiCursorClick />
       </button>
 
       {showSupportInfo && (

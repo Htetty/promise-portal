@@ -3,7 +3,7 @@ import { eventsImages, counselorImages, staticImages } from "../../data/images";
 
 export function ImageGallery() {
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-6 p-8">
+    <div className="grid grid-cols-2 grid-rows-2 gap-6 p-4 min-h-[550px] lg:min-h-0">
       {/* still image #1 */}
       <div className="group rounded-2xl overflow-hidden shadow-lg">
         <div className="relative w-full h-full">

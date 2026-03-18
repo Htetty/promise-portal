@@ -139,7 +139,7 @@ export function Navigation() {
 
           <button
             onClick={handleSignOut}
-            className="flex items-center space-x-4 sm:space-x-8 rounded-lg px-3 py-2 sm:px-4 sm:py-3 bg-[#ea580c] text-xs sm:text-sm font-bold text-white hover:px-6 active:scale-90 duration-300  lg:absolute lg:right-0"
+            className="flex items-center space-x-4 sm:space-x-8 rounded-lg px-3 py-2 sm:px-4 sm:py-3 bg-[#ea580c] text-xs sm:text-sm font-bold text-white hover:px-6 active:scale-90 duration-300  lg:absolute lg:right-0 cursor-pointer"
           >
             Sign Out
           </button>
