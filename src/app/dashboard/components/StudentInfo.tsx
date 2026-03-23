@@ -13,6 +13,7 @@
 import { getUserData } from "../actions";
 import { SupportViewer } from "../../shared/components/SupportViewer";
 import { PeekingCharacter } from "../../shared/components/Animations";
+import { Disclaimer } from "../../shared/components/Disclaimer";
 
 function normalizeIncentive(incentiveText?: string): string {
   if (!incentiveText) return "N/A";
@@ -102,7 +103,7 @@ export const StudentInfo = async () => {
         <div className="flex flex-col sm:flex-wrap items-start gap-3 sm:gap-4 gap-y-5">
           {/* Support Level */}
           <div className="flex gap-x-2">
-            <span className="bg-[#FDD06E] text-[black] px-2 sm:px-3 py-1 rounded-full text-lg font-semibold">
+            <span className="bg-[#FDD06E] text-[black] px-2 sm:px-3 rounded-full text-lg font-semibold">
               {userData?.support_level || "N/A"} Support
             </span>
             <SupportViewer supportLevel={userData?.support_level} />
@@ -111,14 +112,11 @@ export const StudentInfo = async () => {
           {/* Incentive Choice */}
           <div className="flex flex-row sm:flex-row sm:flex-wrap gap-3 sm:gap-4 gap-y-5">
             <span className="text-lg text-[black]">Incentive Choice:</span>
-            <span className="bg-gray-200 text-[black] px-2 sm:px-3 lg:px-4 py-1 rounded-full text-lg font-semibold">
+            <span className="bg-gray-200 text-[black] px-2 sm:px-3 lg:px-4 rounded-full text-lg font-semibold">
               {normalizeIncentive(userData?.incentive_choice)}
             </span>
           </div>
-
-          <p className="text-xs lg:text-sm text-[#8e8e8e]">
-            *Data updates at the start of each week*
-          </p>
+          <Disclaimer />
         </div>
       </div>
     );

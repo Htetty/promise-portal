@@ -128,8 +128,30 @@ function TimelineComponent({ events }: { events: PEOEvent[] }) {
           </TimelineSeparator>
           <TimelineContent>
             <div className="break-words">
-              <div className="text-sm lg:text-md font-semibold break-words">
-                {event.title}
+              <div className="flex items-center gap-2">
+                <span className="text-sm lg:text-md font-semibold break-words flex-1">
+                  {event.title}
+                </span>
+                <a
+                  href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+                    event.title
+                  )}&dates=${event.date.replace(/-/g, "")}T${
+                    event.start_time?.replace(":", "") ?? "0000"
+                  }00/${event.date.replace(/-/g, "")}T${
+                    event.end_time?.replace(":", "") ?? "0000"
+                  }00&location=${encodeURIComponent(event.location ?? "")}`}
+                  target="_blank"
+                  title="Add to Google Calendar"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer"
+                >
+                  <img
+                    src="/images/google-calendar.svg"
+                    width="18"
+                    height="18"
+                  />
+                </a>
+                {/* <span>&larr; Add to calendar!</span> */}
               </div>
               <div className="text-sm lg:text-md text-gray-600">
                 {event.time}
@@ -211,7 +233,7 @@ export default function Calendar({ peoEvents }: DatesProps) {
       <h3 className="text-lg sm:text-xl font-bold text-[black]">
         Upcoming PEOs & Important Dates
       </h3>
-      <h2 className="text-sm text-[#8e8e8e] mb-4 sm:mb-6">
+      <h2 className="text-sm mb-4 sm:mb-6">
         <FaTriangleExclamation className="inline relative -top-[2px] text-red-500 mr-1" />
         After attending any event/workshop, please fill out this{" "}
         <a
@@ -237,7 +259,7 @@ export default function Calendar({ peoEvents }: DatesProps) {
         </div>
 
         {/* events */}
-        <div className="flex-1 bg-gray-50 rounded-2xl p-4">
+        <div className="flex-1 bg-gray-50 rounded-2xl p-4 max-h-84 overflow-y-auto">
           <h3 className="font-semibold mb-2">
             Events on {selectedDate.format("MMMM D, YYYY")}:
           </h3>

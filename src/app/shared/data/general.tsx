@@ -7,3 +7,5 @@ export const ANNOUNCEMENT_LINK: string =
 
 export const ANNOUNCEMENT_GRAD_COLOR: string =
   "from-[#FDD06E] via-[#FFE8AD]";
+
+  export const currentSemester: string = "Spring 2026";

@@ -1,10 +1,10 @@
 import { StudentInfo } from "./components/StudentInfo";
 import { Progress } from "./components/Progress";
-import Calendar from "./components/Dates";
+import Calendar from "./components/Calendar";
 import { getPEOEvents } from "./actions";
 import Media from "./components/Media";
 import Announcements from "./components/Announcement";
-import { Footer } from "./components/Credit"
+import { Footer } from "./components/Footer";
 import { MdOutlineStar } from "react-icons/md";
 
 export const dynamic = "force-dynamic";

@@ -1,6 +1,7 @@
 import { getUserData } from "../actions";
 import { ConfettiTrigger } from "../../shared/components/Confetti";
 import { SUPPORT_DATA, type SupportLevel } from "../data/Support";
+import { currentSemester } from "@/app/shared/data/general";
 
 export const Progress = async () => {
   try {
@@ -36,9 +37,10 @@ export const Progress = async () => {
     );
     return (
       <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-        <h3 className="text-lg sm:text-xl font-bold text-[black] mb-4 sm:mb-6 text-center">
+        <h3 className="text-lg sm:text-xl font-bold mb-2 text-[black] text-center">
           Check Out Your Progress!
         </h3>
+        <h2 className="text-lg font-bold text-[black] mb-2 sm:mb-4 text-center">{currentSemester}</h2>
 
         {/* progress rings */}
         <div className="flex flex-col items-center mb-4 sm:mb-6">
