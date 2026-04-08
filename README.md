@@ -76,7 +76,7 @@ npm run lint      # Run ESLint
 
 ## Project Structure
 
-```
+```text
 src/
 ├── app/
 │   ├── login/              # Authentication page (Google Sign-In)
