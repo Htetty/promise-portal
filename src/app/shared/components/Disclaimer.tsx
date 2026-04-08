@@ -21,7 +21,7 @@ export function Disclaimer() {
             *Data updates at the start of each week.*
           </p>
           <p className="text-sm">
-            *If you believe this information is inaccurate, please contact us at skylinepromise@my.smccd.edu.*
+            *If you believe any information is inaccurate, please contact us at skylinepromise@my.smccd.edu.*
           </p>
         </div>
       )}

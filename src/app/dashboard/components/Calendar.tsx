@@ -146,7 +146,7 @@ function TimelineComponent({ events }: { events: PEOEvent[] }) {
                   className="cursor-pointer"
                 >
                   <img
-                    src="/images/google-calendar.svg"
+                    src="/images/icons/google-calendar.svg"
                     width="18"
                     height="18"
                   />
