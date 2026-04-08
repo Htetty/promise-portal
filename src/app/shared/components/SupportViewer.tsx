@@ -54,7 +54,7 @@ export const SupportViewer = ({ supportLevel }: SupportViewerProps) => {
                 <img
                   src={
                     imageError || !supportItem
-                      ? "/Support/not-found.jpg"
+                      ? "/images/support/not-found.jpg"
                       : supportItem.src
                   }
                   alt={

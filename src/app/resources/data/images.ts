@@ -1,20 +1,20 @@
 export const staticImages = {
   counseling: {
-    src: "/images/sliderTop/02.jpg",
+    src: "/images/login/slider-top/02.jpg",
   },
   canvas: {
-    src: "/images/logo-canvas.png",
+    src: "/images/resources/logo-canvas.png",
   },
   peo: {
-    src: "/images/peopicture.jpg",
+    src: "/images/resources/peopicture.jpg",
   },
   handbook: {
-    src: "/images/promise-shirt.jpg",
+    src: "/images/shared/promise-shirt.jpg",
   },
   fa: {
-    src: "/images/FApicture.jpg",
+    src: "/images/resources/FApicture.jpg",
   },
   smccd: {
-    src: "/images/SMCCDLogo2.jpg"
+    src: "/images/resources/SMCCDLogo2.jpg"
   }
 };

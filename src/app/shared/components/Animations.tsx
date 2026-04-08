@@ -10,7 +10,7 @@ export const PeekingCharacter = () => {
   return (
     <div className="absolute top-4 right-0 sm:top-6 lg:top-8 w-55 h-55 sm:w-70 sm:h-70 lg:w-60 lg:h-60 overflow-hidden z-10">
       <motion.img
-        src="/dashboard/sideCharacter.png"
+        src="/images/dashboard/sideCharacter.png"
         className="w-full h-full object-contain object-right"
         alt="Character"
         initial={{ x: "100%" }}
