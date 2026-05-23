@@ -1,60 +1,61 @@
 # Promise Portal
 
-A student engagement and progress tracking platform for the **Promise Scholars Program (PSP)** at Skyline College (SMCCD). Promise Portal gives enrolled students a personalized dashboard to monitor their program requirements, browse upcoming events, read Canvas announcements, and access program resources — all in one place.
+Promise Portal is a centralized dashboard for the **Promise Scholars Program** at Skyline College, part of SMCCD. It gives promise scholars one place to review program progress, upcoming PSP events, important announcements, and commonly used resources.
+
+This repository is intended for internal team development and maintenance.
 
 ---
 
-## Features
+## What It Does
 
-- **Secure Authentication** — Google Sign-In restricted to `@my.smccd.edu` accounts with enrollment verification
-- **Personalized Dashboard** — View your student profile, support level, and program progress at a glance
-- **Progress Tracking** — Visual ring charts for counselor appointments, PEO completions, and overall standing
-- **Event Calendar** — Browse upcoming PSP workshops and PEOs with one-click Google Calendar export
-- **Canvas Announcements** — Live course announcements pulled directly from Canvas LMS
-- **Resources Hub** — Filterable FAQ, guides, and quick links to key tools (OneLogin, DegreeWorks, etc.)
-- **PEO Credit Forms** — Submit attendance forms for Professional & Educational Opportunities
+- **Google sign-in for SMCCD students**: Authentication is restricted to `@my.smccd.edu` accounts.
+- **Enrollment verification**: Dashboard access is limited to students found in the `Student_Data` table.
+- **Student dashboard**: Gives enrolled students a personalized view of their PSP status, including:
+  - **Profile details**: Shows student information such support level, counselor, and upcoming appointments.
+  - **Progress tracking**: Shows counselor appointment, PEO, and overall standing indicators.
+  - **PEO event calendar**: Lists upcoming promise engagements events with Google Calendar export.
+  - **Canvas announcements**: Pulls course announcements from Canvas LMS.
+- **Resources hub**: Provides PSP FAQs, guides, and links to tools such as OneLogin, DegreeWorks, and Canvas.
 
 ---
 
 ## Tech Stack
 
 | Layer | Technology |
-|---|---|
-| Framework | [Next.js](https://nextjs.org) (App Router) with TypeScript |
+| --- | --- |
+| Framework | [Next.js](https://nextjs.org) App Router with TypeScript |
 | Styling | [Tailwind CSS v4](https://tailwindcss.com), [HeroUI](https://heroui.com), [Material UI](https://mui.com) |
-| Animations | [Framer Motion](https://www.framer.com/motion/), [canvas-confetti](https://github.com/catdad/canvas-confetti) |
-| Database & Auth | [Supabase](https://supabase.com) (PostgreSQL + Google OAuth) |
+| Animation and UI Effects | [Framer Motion](https://www.framer.com/motion/) |
+| Database and Auth | [Supabase](https://supabase.com) PostgreSQL + Google OAuth |
 | External APIs | Canvas LMS REST API |
-| Analytics | [Vercel Analytics](https://vercel.com/analytics) & Speed Insights |
+| Analytics | [Vercel Analytics](https://vercel.com/analytics) and Speed Insights |
 | Deployment | [Vercel](https://vercel.com) |
 
 ---
 
-## Getting Started
+## Local Setup
 
 ### Prerequisites
 
-- Node.js 18+
-- A [Supabase](https://supabase.com) project with the `Student_Data` and `PEO` tables set up
-- A Canvas API token with access to the relevant course
-- Google OAuth credentials (configured for the `@my.smccd.edu` domain)
+- Node.js 18 or newer
+- Access to the team Supabase project
+- Access to the relevant Canvas course and API token
+- Google OAuth credentials configured for SMCCD student accounts
 
-### Installation
+### Install Dependencies
 
 ```bash
-git clone https://github.com/Htetty/promise-portal.git
-cd promise-portal
 npm install
 ```
 
 ### Environment Variables
 
-Create a `.env.local` file in the project root:
+Create a `.env.local` file in the project root. **Do not commit this file**.
 
 ```env
 # Supabase
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
 
 # Canvas LMS
 CANVAS_TOKEN=your_canvas_api_bearer_token
@@ -63,12 +64,20 @@ CANVAS_TOKEN=your_canvas_api_bearer_token
 SITE_URL=http://localhost:3000
 ```
 
-### Running Locally
+### Run Locally
 
 ```bash
-npm run dev       # Start dev server at http://localhost:3000
+npm run dev
+```
+
+The local app runs at `http://localhost:3000`.
+
+### Common Commands
+
+```bash
+npm run dev       # Start the development server
 npm run build     # Build for production
-npm start         # Start production server
+npm start         # Start the production server
 npm run lint      # Run ESLint
 ```
 
@@ -79,60 +88,64 @@ npm run lint      # Run ESLint
 ```text
 src/
 ├── app/
-│   ├── login/              # Authentication page (Google Sign-In)
+│   ├── login/              # Google sign-in flow
 │   ├── dashboard/          # Protected student dashboard
-│   │   ├── components/     # Dashboard widgets (Progress, Calendar, etc.)
-│   │   └── actions.ts      # Server actions for data fetching
-│   ├── resources/          # Public resources & FAQ hub
+│   │   ├── components/     # Dashboard widgets
+│   │   └── actions.ts      # Server actions for Supabase data
+│   ├── resources/          # Resources and FAQ hub
 │   ├── api/
 │   │   └── announcements/  # Canvas announcements API route
-│   └── shared/             # Shared components & constants
+│   └── shared/             # Shared components and constants
 ├── lib/
-│   ├── supabase/           # Supabase client (browser + server)
+│   ├── supabase/           # Supabase browser and server clients
 │   └── canvas/             # Canvas API integration
-└── middleware.ts            # Auth & routing middleware
+└── middleware.ts           # Auth, domain, and enrollment checks
 ```
 
 ---
 
-## Contributing
+## Data and Access Notes
 
-Contributions are welcome! Whether it's a bug fix, a UI improvement, or a new feature — feel free to open an issue or submit a pull request.
-
-### How to Contribute
-
-1. **Fork** the repository and create a new branch:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-2. **Make your changes**, following the code style below.
-3. **Test** your changes locally with `npm run dev`.
-4. **Lint** your code before committing:
-   ```bash
-   npm run lint
-   ```
-5. **Open a Pull Request** with a clear description of what you changed and why.
-
-### Code Style
-
-This project uses ESLint with the Next.js recommended config. A few conventions to follow:
-
-- Use **double quotes** for strings
-- Always include **semicolons**
-- TypeScript strict mode is enabled — avoid `any` types
-- Prefer **server components** and **server actions** over client-side data fetching where possible
-- Keep components small and focused; place shared logic in `src/app/shared/` or `src/lib/`
-
-### Reporting Bugs
-
-Open a [GitHub Issue](https://github.com/Htetty/promise-portal/issues) with:
-- A clear description of the bug
-- Steps to reproduce
-- Expected vs. actual behavior
-- Screenshots if applicable (no sensitive student data, please)
+- Treat all student records as sensitive. Student data is actively maintained through Google Sheets synced with Supabase.
+- Dashboard access depends on a matching `smccd_email` value in the `Student_Data` table.
+- PEO events are read from the `PEO` table and ordered by date.
+- Keep environment variables in local, Vercel, or Supabase-managed secret storage only.
 
 ---
 
-## License
+## Team Workflow
 
-[MIT](LICENSE) © 2025 Htet Htwe
+This project is maintained by the internal PSP development team.
+
+1. Create a branch from the current main branch.
+2. Keep changes focused and aligned with the existing app structure.
+3. Run `npm run lint` before opening a pull request.
+4. Include a short PR description covering what changed, why it changed, and how it was tested.
+5. Request review from a teammate familiar with the affected area.
+
+### Code Guidelines
+
+- Use TypeScript for application code.
+- Follow the existing formatting style: double quotes and semicolons.
+- Avoid `any` unless there is a clear reason.
+- Prefer server components and server actions when data does not need to be fetched on the client.
+- Keep shared UI in `src/app/shared/` and shared service logic in `src/lib/`.
+- Avoid exposing implementation details, tokens, student identifiers, or internal program data in client-visible code.
+
+---
+
+## Deployment
+
+Production deployment is handled through Vercel.
+
+Before deploying:
+
+- Confirm required environment variables are set in Vercel.
+- Run `npm run build` locally when making changes to routing, middleware, auth, or data fetching.
+- Verify login, dashboard access, Canvas announcements, PEO events, and resources after deployment.
+
+---
+
+## Internal Use
+
+This repository is maintained for the Promise Scholars Program team. Do not redistribute the code, credentials, student data, or internal configuration outside the authorized team without approval.
